@@ -3,7 +3,8 @@ import "./companydetails.css";
 import TestContainer from "./TestContainer";
 
 function CompanyDetails({ props, index, BQID }) {
-  console.log("Company Details  ", props);
+  
+  console.log("Company Details  ", props?.fields?.bq_organization_address1_location?.lat);
 
   return (
     <>
@@ -166,7 +167,7 @@ function CompanyDetails({ props, index, BQID }) {
                 {/* latitude={23.565446}
                     longitude={22.53534} */}
                 <div className="right">
-                  <TestContainer latitude={23.565446} longitude={22.53534} />
+                  <TestContainer latitude={props?.fields?.bq_organization_address1_location?.lat} longitude={props?.fields?.bq_organization_address1_location?.lng} />
                 </div>
               </div>
 

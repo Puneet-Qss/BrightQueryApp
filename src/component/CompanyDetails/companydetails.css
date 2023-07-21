@@ -56,7 +56,5 @@ button {
 
 .right{
   width: 80%;
-  height: auto;
-  background-color: rosybrown;
-
+  height: 100%;
 }
