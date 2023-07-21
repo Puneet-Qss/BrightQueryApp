@@ -1,0 +1,62 @@
+button {
+  border: none;
+  background-color: #f8f8f8;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding-right: 10px;
+}
+
+.modal-body {
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  flex-direction: row;
+  gap: 10px;
+}
+
+/* LEFT  */
+
+.left-content {
+  background-color: antiquewhite;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  height: 70vh;
+  overflow-y: scroll;
+}
+
+.company-name {
+  opacity: 0.7;
+  height: fit-content;
+  display: inline;
+  /* margin: 10px; */
+}
+
+.legal {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.organization {
+  margin: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+
+/* MAP  */
+
+.right{
+  width: 80%;
+  height: auto;
+  background-color: rosybrown;
+
+}

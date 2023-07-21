@@ -1,0 +1,80 @@
+.side-content {
+  height: 60vh;
+  overflow-y: auto;
+  margin: auto;
+  padding: 20px;
+  font-size: 13px;
+}
+.top-headers {
+  opacity: 0.9;
+  font-size: 14px;
+}
+
+.bottom-header {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  gap: 40px;
+  font-size: 13px;
+}
+
+/* TABLE   */
+table thead {
+  opacity: 0.5;
+}
+
+table thead tr th:first-child {
+  width: 70%;
+  padding-left: 50px;
+}
+
+table thead tr th:nth-child(2) {
+  width: 8%;
+}
+
+table thead tr th:nth-child(3) {
+  width: 60%;
+}
+
+table thead tr th:nth-child(4) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+
+.firstHead {
+  border-bottom: 1px solid rgb(185, 184, 177);
+}
+
+tbody {
+  font-size: 14px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  height: 40vh;
+  overflow-y: auto;
+}
+
+
+.first-row {
+  border-bottom: 1px solid;
+  border-bottom: 1px solid rgb(185, 184, 177);
+}
+
+.firstData {
+  padding-left: 50px;
+}
+
+.CompanyName {
+  font-weight: bold;
+  color: #00bef3;
+  cursor: pointer;
+}
+
+.icon {
+  display: flex;
+  margin-left: -20px;
+  flex-direction: column;
+}
+
+
+
