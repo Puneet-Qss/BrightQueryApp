@@ -14,15 +14,14 @@ button {
   align-items: left;
   flex-direction: row;
   gap: 10px;
+  margin: 50px 0px;
 }
 
 /* LEFT  */
 
 .left-content {
-  background-color: antiquewhite;
   display: flex;
   justify-content: space-between;
-  gap: 15px;
   height: 70vh;
   overflow-y: scroll;
 }
@@ -35,7 +34,6 @@ button {
 }
 
 .legal {
-  margin: 30px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -43,7 +41,8 @@ button {
 
 
 .organization {
-  margin: 30px;
+  margin-top: 520px;
+  margin-left: 30px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -55,6 +54,6 @@ button {
 /* MAP  */
 
 .right{
-  width: 80%;
+  width:70%;
   height: 100%;
 }
