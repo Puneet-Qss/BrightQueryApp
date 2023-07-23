@@ -98,7 +98,7 @@ function CompanyDetails({ props, index, BQID }) {
                     <div className="webiste">
                       <p className="company-name">COMPANY WEBSITE:</p>
                       <br />
-                      {props?.fields?.bq_organization_isactive}DF
+                      {props?.fields?.bq_organization_isactive}
                     </div>
                     <div className="webiste">
                       <p className="company-name">BQ SCORE:</p>
@@ -167,6 +167,7 @@ function CompanyDetails({ props, index, BQID }) {
                 </div>
                 {/* latitude={23.565446}
                     longitude={22.53534} */}
+                    
                 <div className="right">
                   <TestContainer
                     latitude={
