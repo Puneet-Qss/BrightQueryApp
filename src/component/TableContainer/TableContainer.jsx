@@ -1,11 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import "./tablecontainer.css";
 import CompanyDetails from "../CompanyDetails/CompanyDetails";
+
 function TableContainer({ results, index, BQID }) {
   console.log("Result from Search", results);
 
-  // Extrscting fields from the Data.
+  // Extracting fields from the Data.
   const data = results?.root?.children;
+
+  // Define the state to keep track of the sorting order and column
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortColumn, setSortColumn] = useState("Company");
+
+  // Custom sorting function to sort the data based on the "Company" column
+  const customSort = (a, b) => {
+    const fieldA = a.fields.bq_organization_name.toLowerCase();
+    const fieldB = b.fields.bq_organization_name.toLowerCase();
+
+    if (sortOrder === "asc") {
+      return fieldA > fieldB ? 1 : -1;
+    } else {
+      return fieldA < fieldB ? 1 : -1;
+    }
+  };
+
+  // Function to handle sorting when the header is clicked
+  const handleSort = (columnName) => {
+    if (sortColumn === columnName) {
+      // If the same column is clicked again, reverse the sorting order
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      // If a different column is clicked, set the new column and default sorting order to "asc"
+      setSortColumn(columnName);
+      setSortOrder("asc");
+    }
+  };
+
+  // Sort the data based on the selected column and order
+  const sortedData = [...data].sort(customSort);
 
   const BQ_ID = (str) => {
     const delimiter = "::";
@@ -30,35 +62,32 @@ function TableContainer({ results, index, BQID }) {
         {/* TABLE  */}
 
         <table>
-          <thead className="firstHead">
-            <tr>
-              <th>
-                <i class="fa-solid fa-sort" style={{ color: "#a3a3a3" }}></i>{" "}
-                Company
-              </th>
-              <th>
-                <i class="fa-solid fa-sort" style={{ color: "#a3a3a3" }}></i>{" "}
-                Status
-              </th>
-              <th>
-                <i class="fa-solid fa-sort" style={{ color: "#a3a3a3" }}></i>{" "}
-                Revenue
-              </th>
-              <th>
-                {" "}
-                <i
-                  class="fa-solid fa-sort"
-                  style={{ color: "#a3a3a3" }}
-                ></i>{" "}
-                Headcount
-              </th>
-            </tr>
-          </thead>
+        <thead className="firstHead">
+          <tr>
+            <th onClick={() => handleSort("Company")}>
+              <i className="fa-solid fa-sort" style={{ color: "#a3a3a3" }}></i>{" "}
+              Company
+            </th>
+            <th onClick={() => handleSort("Status")}>
+              <i className="fa-solid fa-sort" style={{ color: "#a3a3a3" }}></i>{" "}
+              Status
+            </th>
+            <th onClick={() => handleSort("Revenue")}>
+              <i className="fa-solid fa-sort" style={{ color: "#a3a3a3" }}></i>{" "}
+              Revenue
+            </th>
+            <th onClick={() => handleSort("Headcount")}>
+              {" "}
+              <i className="fa-solid fa-sort" style={{ color: "#a3a3a3" }}></i>{" "}
+              Headcount
+            </th>
+          </tr>
+        </thead>
 
-          <tbody>
-            {data.map((data, index) => {
-              return (
-                <tr key={index} className="first-row">
+        <tbody>
+          {sortedData.map((data, index) => {
+            return (
+              <tr key={index} className="first-row">
                   <td className="firstData">
                     <div className="row-details">
                       <div className="icon">

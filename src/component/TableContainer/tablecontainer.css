@@ -47,6 +47,9 @@ table thead tr th:nth-child(4) {
   border-bottom: 1px solid rgb(185, 184, 177);
 }
 
+/* .firstHead tr th{
+  cursor: pointer;
+} */
 tbody {
   font-size: 14px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
