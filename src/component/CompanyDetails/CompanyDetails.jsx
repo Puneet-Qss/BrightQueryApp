@@ -3,11 +3,6 @@ import "./companydetails.css";
 import TestContainer from "./TestContainer";
 
 function CompanyDetails({ props, index, BQID }) {
-  console.log(
-    "Company Details  ",
-    props?.fields?.bq_organization_address1_location?.lat
-  );
-
   return (
     <>
       <div className="modal-component">

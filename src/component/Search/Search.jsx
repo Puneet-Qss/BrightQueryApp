@@ -19,7 +19,6 @@ function Search() {
       try {
         const response = await axios.get("http://vespa-dev-36202923.us-west-2.elb.amazonaws.com/search", {
           params: {
-            hits: 5,
             query: query,
           },
         });

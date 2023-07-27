@@ -16,7 +16,7 @@ const TestContainer = ({ latitude, longitude }) => {
   };
 
   return (
-    <div style={{ border: "1px solid red" }}>
+    <div>
       <MapContainer
         center={position}
         zoom={13}
@@ -24,8 +24,7 @@ const TestContainer = ({ latitude, longitude }) => {
         style={mapStyle}
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Marker position={position}>
           <Popup>

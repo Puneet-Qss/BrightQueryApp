@@ -4,6 +4,8 @@
   margin: auto;
   padding: 20px;
   font-size: 13px;
+  display: flex;
+  
 }
 .top-headers {
   opacity: 0.9;
@@ -19,13 +21,18 @@
 }
 
 /* TABLE   */
+
+table{
+  width:70dvw
+}
+ 
 table thead {
   opacity: 0.5;
 }
 
 table thead tr th:first-child {
   width: 70%;
-  padding-left: 50px;
+  padding-left: 0px;
 }
 
 table thead tr th:nth-child(2) {
@@ -47,13 +54,11 @@ table thead tr th:nth-child(4) {
   border-bottom: 1px solid rgb(185, 184, 177);
 }
 
-/* .firstHead tr th{
-  cursor: pointer;
-} */
+
 tbody {
   font-size: 14px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  height: 40vh;
+  height: 70vh;
   overflow-y: auto;
 }
 
@@ -79,5 +84,12 @@ tbody {
   flex-direction: column;
 }
 
+.mapicon{
+  position: relative;
+  top: 140px;
+}
 
-
+.companyIcon{
+  position: relative;
+  top: 30px;
+}
