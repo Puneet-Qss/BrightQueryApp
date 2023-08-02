@@ -17,7 +17,7 @@ function Search() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get("http://vespa-dev-36202923.us-west-2.elb.amazonaws.com/search", {
+        const response = await axios.get("https://searchapi.brightquery.com/search", {
           params: {
             query: query,
           },

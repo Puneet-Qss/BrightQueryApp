@@ -24,19 +24,15 @@ function TableContainer({ results, index, BQID }) {
     }
   };
 
-  // Function to handle sorting when the header is clicked
   const handleSort = (columnName) => {
     if (sortColumn === columnName) {
-      // If the same column is clicked again, reverse the sorting order
       setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     } else {
-      // If a different column is clicked, set the new column and default sorting order to "asc"
       setSortColumn(columnName);
       setSortOrder("asc");
     }
   };
 
-  // Sort the data based on the selected column and order
   const sortedData = [...data].sort(customSort);
 
   const BQ_ID = (str) => {

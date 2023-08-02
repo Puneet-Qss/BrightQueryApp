@@ -1,10 +1,11 @@
 .home-content {
    margin: 3% 5%;
- 
    @media screen and (min-width: 768px) {
      margin: 3% 10%;
    }
  }
+
+
  
  .recent-head {
    display: flex;
@@ -18,6 +19,12 @@
  .recent-head h3 {
    flex: 1; 
  }
+
+ .recent-btn{
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
+ }
  
  .hide-btn {
    border-radius: 5px;
@@ -25,7 +32,7 @@
    background: #fff;
    font-size: 12px;
    border: 1px solid #f1f1f1;
-   margin-left: 10px;
+   margin-left: 200px;
  }
  
  .recentContent, .report-ques {
@@ -99,4 +106,38 @@
 
 .my-drive p {
   margin-top: 5px; 
+}
+/* Add a media query for screens with max-width 767px */
+@media screen and (max-width: 767px) {
+  .home-content {
+    margin: 3% 5%;
+  }
+
+  /* Adjust the styling for smaller screens */
+  .hide-btn {
+    margin-left: 0; /* Center the button */
+  }
+
+  .recent-head {
+    flex-direction: column; /* Stack the header content */
+    align-items: flex-start; /* Align header items to the start */
+    padding-bottom: 10px;
+  }
+
+  /* Adjust the layout for the recent content sections */
+  .recentContent,
+  .report-ques {
+    margin: 10px 0; /* Add some space on small screens */
+  }
+
+  /* Adjust the layout for the lists in the recent content sections */
+  ul {
+    flex-direction: column; /* Stack list items on small screens */
+  }
+
+  /* Modify the size of images in the "My Drive" section */
+  .my-drive img {
+    height: 80px;
+    width: 80px;
+  }
 }

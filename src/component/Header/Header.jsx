@@ -21,7 +21,8 @@ function Header({ className }) {
   return (
     <>
       <div className={`home-container ${className}`}>
-        <img className="logo" src={Logo} alt="logo" />
+        <img className="logo" src={Logo}   alt="logo" />
+        <br />
         <form className="form-inline" onSubmit={submitHandle}>
           <div className="input-group mb-2 mr-sm-2">
             <input
