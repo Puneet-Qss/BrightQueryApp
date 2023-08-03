@@ -5,7 +5,9 @@
   padding: 20px;
   font-size: 13px;
   display: flex;
-  
+  flex-direction: column;
+  height: 400px;
+  overflow-y: scroll;
 }
 .top-headers {
   opacity: 0.9;

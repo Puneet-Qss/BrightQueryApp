@@ -45,8 +45,10 @@ function TableContainer({ results, index, BQID }) {
   const handleMapClick = (index) => {
     const clickedData = data[index];
     console.log("Clicked", clickedData);
-    const latitude = clickedData?.fields?.bq_organization_address1_location?.lat;
-    const longitude = clickedData?.fields?.bq_organization_address1_location?.lng;
+    const latitude =
+      clickedData?.fields?.bq_organization_address1_location?.lat;
+    const longitude =
+      clickedData?.fields?.bq_organization_address1_location?.lng;
     console.log("Lat", latitude, longitude);
     setSelectedRowIndex(!selectedRowIndex);
     setShowMe(!showMe);
@@ -163,44 +165,57 @@ function TableContainer({ results, index, BQID }) {
             </tbody>
           </table>
         </div>
-      </div>
-
-      {/* Bootstrap Pagination component */}
-      <nav aria-label="Page navigation example">
-        <ul className="pagination justify-content-end">
-          <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-            <a
-              className="page-link"
-              href="#"
-              tabIndex="-1"
-              aria-disabled="true"
-              onClick={() => handlePageChange(currentPage - 1)}
-            >
-              Previous
-            </a>
-          </li>
-          {Array.from({ length: Math.ceil(sortedData.length / itemsPerPage) }).map((_, index) => (
-            <li key={index} className={`page-item ${currentPage === index + 1 ? "active" : ""}`}>
+        <nav aria-label="Page navigation example">
+          <ul className="pagination justify-content-end">
+            <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
               <a
                 className="page-link"
                 href="#"
-                onClick={() => handlePageChange(index + 1)}
+                tabIndex="-1"
+                aria-disabled="true"
+                onClick={() => handlePageChange(currentPage - 1)}
               >
-                {index + 1}
+                Previous
               </a>
             </li>
-          ))}
-          <li className={`page-item ${currentPage === Math.ceil(sortedData.length / itemsPerPage) ? "disabled" : ""}`}>
-            <a
-              className="page-link"
-              href="#"
-              onClick={() => handlePageChange(currentPage + 1)}
+            {Array.from({
+              length: Math.ceil(sortedData.length / itemsPerPage),
+            }).map((_, index) => (
+              <li
+                key={index}
+                className={`page-item ${
+                  currentPage === index + 1 ? "active" : ""
+                }`}
+              >
+                <a
+                  className="page-link"
+                  href="#"
+                  onClick={() => handlePageChange(index + 1)}
+                >
+                  {index + 1}
+                </a>
+              </li>
+            ))}
+            <li
+              className={`page-item ${
+                currentPage === Math.ceil(sortedData.length / itemsPerPage)
+                  ? "disabled"
+                  : ""
+              }`}
             >
-              Next
-            </a>
-          </li>
-        </ul>
-      </nav>
+              <a
+                className="page-link"
+                href="#"
+                onClick={() => handlePageChange(currentPage + 1)}
+              >
+                Next
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      {/* Bootstrap Pagination component */}
 
       {showMap ? (
         <div className="map-wrapper" style={{ width: "50vw" }}>
