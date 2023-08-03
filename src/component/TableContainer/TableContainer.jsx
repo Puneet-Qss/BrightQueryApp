@@ -45,36 +45,36 @@ function TableContainer({ results, index, BQID }) {
   const handleMapClick = (index) => {
     const clickedData = data[index];
     console.log("Clicked", clickedData);
-    const latitude =
-      clickedData?.fields?.bq_organization_address1_location?.lat;
-    const longitude =
-      clickedData?.fields?.bq_organization_address1_location?.lng;
+    const latitude = clickedData?.fields?.bq_organization_address1_location?.lat;
+    const longitude = clickedData?.fields?.bq_organization_address1_location?.lng;
     console.log("Lat", latitude, longitude);
     setSelectedRowIndex(!selectedRowIndex);
     setShowMe(!showMe);
     setMapData({ latitude, longitude });
     setShowMap(!showMap);
   };
-  
 
   useEffect(() => {
     console.log("Map Data ", mapData);
   }, [showMap, mapData]);
 
+  // State variables for pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10; // Number of items to display per page
+
+  // Calculate the index of the first and last items to display on the current page
+  const lastIndex = currentPage * itemsPerPage;
+  const firstIndex = lastIndex - itemsPerPage;
+  const currentItems = sortedData.slice(firstIndex, lastIndex);
+
+  // Handle page change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <>
       <div className="side-content">
-        {/* <div className="top-headers">
-          <p>1661 results of google</p>
-          <p>search Results with filter</p>
-          <div className="bottom-header">
-            <p>Displaying 20 of 133 results on page </p>
-            <p>Previous</p>
-            <p>Next</p>
-          </div>
-        </div> */}
-
-        {/* TABLE  */}
         <div className="table-wrapper">
           <table>
             <thead className="firstHead">
@@ -111,7 +111,7 @@ function TableContainer({ results, index, BQID }) {
             </thead>
 
             <tbody>
-              {sortedData.map((data, index) => {
+              {currentItems.map((data, index) => {
                 return (
                   <tr key={index} className="first-row">
                     <td className="firstData">
@@ -165,12 +165,47 @@ function TableContainer({ results, index, BQID }) {
         </div>
       </div>
 
+      {/* Bootstrap Pagination component */}
+      <nav aria-label="Page navigation example">
+        <ul className="pagination justify-content-end">
+          <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+            <a
+              className="page-link"
+              href="#"
+              tabIndex="-1"
+              aria-disabled="true"
+              onClick={() => handlePageChange(currentPage - 1)}
+            >
+              Previous
+            </a>
+          </li>
+          {Array.from({ length: Math.ceil(sortedData.length / itemsPerPage) }).map((_, index) => (
+            <li key={index} className={`page-item ${currentPage === index + 1 ? "active" : ""}`}>
+              <a
+                className="page-link"
+                href="#"
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </a>
+            </li>
+          ))}
+          <li className={`page-item ${currentPage === Math.ceil(sortedData.length / itemsPerPage) ? "disabled" : ""}`}>
+            <a
+              className="page-link"
+              href="#"
+              onClick={() => handlePageChange(currentPage + 1)}
+            >
+              Next
+            </a>
+          </li>
+        </ul>
+      </nav>
 
       {showMap ? (
-        <div className="map-wrapper" style={{width:"50vw"}}>
+        <div className="map-wrapper" style={{ width: "50vw" }}>
           <RisizableDiv mapData={mapData} />
         </div>
-
       ) : (
         ""
       )}
