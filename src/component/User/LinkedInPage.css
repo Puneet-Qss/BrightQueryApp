@@ -1,20 +1,46 @@
-.text-center{
-    margin:7% 30%;
-       color: #05313d;
-}
-
-
-.form-signin{
+.text-center {
+    margin: 5% 10%;
+    color: #05313d;
+    background-color: #f8f8f8;
+    padding: 3%;
+  }
+  
+  .form-signin {
     text-align: center;
     display: flex;
     flex-direction: column;
-}
-
-.form-signin input{
+    gap: 10px; 
+  }
+  
+  .form-signin input,
+  .btn {
     min-width: 100px;
-    width: 400px;
-}
-
-h1{
+    padding: 8px; 
+  }
+  
+  h1 {
     color: #05313d;
-}
+    font-size: 24px; 
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 200px;  
+  }
+
+   @media screen and (min-width: 768px) {
+    .text-center {
+      margin: 5% 20%;
+    }
+  
+    .btn {
+      max-width: 150px;
+    }
+  }
+  
+  @media screen and (min-width: 1200px) {
+    .text-center {
+      margin: 5% 30%;
+    }
+  }
+  

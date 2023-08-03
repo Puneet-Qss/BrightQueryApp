@@ -4,6 +4,8 @@ import { useLinkedIn } from "react-linkedin-login-oauth2";
 import linkedin from "react-linkedin-login-oauth2/assets/linkedin.png";
 import { useNavigate } from "react-router-dom";
 import "./LinkedInPage.css";
+import axios from "axios";
+import logo from "../../assets/favicon.ico";
 
 function LinkedInPage({ onSignInStatusChange }) {
   const navigate = useNavigate();
@@ -11,10 +13,11 @@ function LinkedInPage({ onSignInStatusChange }) {
   const { linkedInLogin } = useLinkedIn({
     clientId: "788bxzadw543vg",
     redirectUri: `http://localhost:3000/linkedin`,
-    onSuccess: (code) => {
+    onSuccess: async (code) => {
       console.log(code);
       navigate("/");
-      onSignInStatusChange(true); // Notify the parent component about the sign-in
+      onSignInStatusChange(true); 
+      console.log("Onsgin", onSignInStatusChange)
     },
     scope: "r_emailaddress r_liteprofile",
     onError: (error) => {
@@ -22,19 +25,40 @@ function LinkedInPage({ onSignInStatusChange }) {
     },
   });
 
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    const email = e.target.querySelector("#inputEmail").value;
+    const password = e.target.querySelector("#inputPassword").value;
+    const userData = { username: email, password };
+    
+    try {
+      const response = await axios.post("http://localhost:8080/users", userData);
+      console.log(response.status);
+  
+      if (response.status === 200) {
+        console.log("Signup Successful!");
+        navigate("/");
+        onSignInStatusChange(true);
+  
+        // Assuming the response contains the token
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+      } else {
+        alert("User Already Exists");
+      }
+    } catch (error) {
+      console.error("Error during signup:", error);
+      alert("User Already Exists");
+    }
+  };
+  
+
   return (
     <>
       <div className="text-center">
-        <form className="form-signin">
-          {/* <img
-            className="mb-4"
-            src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg"
-            alt=""
-            width="72"
-            height="72"
-          /> */}
-          <h1 >BQ</h1>
-          <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <form className="form-signin" onSubmit={onSubmitHandler}>
+          <img src={logo} alt="logo" />
+          <h1 className="h3 mb-3 font-weight-normal">Welcome to BrightQuery</h1>
           <label htmlFor="inputEmail" className="sr-only">
             Email address
           </label>
@@ -44,7 +68,7 @@ function LinkedInPage({ onSignInStatusChange }) {
             className="form-control"
             placeholder="Email address"
             required=""
-            autofocus=""
+            autoFocus=""
           />
           <label htmlFor="inputPassword" className="sr-only">
             Password
@@ -56,26 +80,21 @@ function LinkedInPage({ onSignInStatusChange }) {
             placeholder="Password"
             required=""
           />
-         
-          <button className="btn btn-lg btn-primary btn-block" type="submit">
-            Sign in
+
+          <button className="btn  btn-outline-primary " type="submit">
+            Sign Up
           </button>
+         
           <Wrapper>
             <img
               onClick={linkedInLogin}
               src={linkedin}
               alt="Log in with Linked In"
-              style={{ maxWidth: "150px", cursor: "pointer",  }}
+              style={{ maxWidth: "200px", cursor: "pointer" }}
             />
-         
           </Wrapper>
         </form>
-        
       </div>
-
-      {/* <div>
-         
-        </div> */}
     </>
   );
 }
