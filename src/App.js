@@ -1,21 +1,32 @@
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Search from "./component/Search/Search";
 import Home from "./component/Home/Home";
-import LinkedInPage from "./component/LinkedIn/LinkedInPage";
+import LinkedInPage from "./component/User/LinkedInPage";
 import { LinkedInCallback } from "react-linkedin-login-oauth2";
+
 function App() {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  const handleSignInStatus = (status) => {
+    setIsSignedIn(status);
+  };
+
   return (
-    <>
-      <Routes>
-        <Route path="/linkedin" element={<LinkedInCallback />}></Route>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/test" element={<LinkedInPage />}></Route>
-         
-    
-        <Route path="/search/:query" element={<Search />}></Route>
-      </Routes>
-    </>
+    <Routes>
+      {/* If signed in, show Home page. If not, redirect to login */}
+      <Route
+        path="/"
+        element={isSignedIn ? <Home /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/login"
+        element={<LinkedInPage onSignInStatusChange={handleSignInStatus} />}
+      />
+      <Route path="/home" element={<Home />} />
+      <Route path="/search/:query" element={<Search />} />
+      <Route path="/linkedin" element={<LinkedInCallback />} />
+    </Routes>
   );
 }
 

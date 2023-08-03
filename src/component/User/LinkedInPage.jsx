@@ -1,35 +1,25 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useLinkedIn } from "react-linkedin-login-oauth2";
 import linkedin from "react-linkedin-login-oauth2/assets/linkedin.png";
 import { useNavigate } from "react-router-dom";
 
-function LinkedInPage() {
+function LinkedInPage({ onSignInStatusChange }) {
   const navigate = useNavigate();
+
   const { linkedInLogin } = useLinkedIn({
     clientId: "788bxzadw543vg",
-    redirectUri: `http://localhost:3000/linkedin`, 
-    // Redirect to your app's URL
+    redirectUri: `http://localhost:3000/linkedin`,
     onSuccess: (code) => {
       console.log(code);
-      closeModal();
       navigate("/");
+      onSignInStatusChange(true); // Notify the parent component about the sign-in
     },
     scope: "r_emailaddress r_liteprofile",
     onError: (error) => {
       console.log(error);
     },
   });
-
-  // Ref to the modal component
-  const modalRef = useRef(null);
-
-  // Function to close the modal
-  const closeModal = () => {
-    if (modalRef.current) {
-      modalRef.current.closeModal();
-    }
-  };
 
   return (
     <Wrapper>
@@ -40,7 +30,7 @@ function LinkedInPage() {
         style={{ maxWidth: "180px", cursor: "pointer" }}
       />
       {/* Pass the ref to the modal component */}
-      <LinkedInModal ref={modalRef} />
+      <LinkedInModal />
     </Wrapper>
   );
 }
