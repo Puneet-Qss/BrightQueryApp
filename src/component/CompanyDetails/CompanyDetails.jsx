@@ -1,6 +1,6 @@
 import React from "react";
 import "./companydetails.css";
-import TestContainer from "./TestContainer";
+import TestContainer from "./MapContainer";
 
 function CompanyDetails({ props, index, BQID }) {
   return (

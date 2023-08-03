@@ -4,7 +4,7 @@ import Search from "./component/Search/Search";
 import Home from "./component/Home/Home";
 import LinkedInPage from "./component/User/LinkedInPage";
 import { LinkedInCallback } from "react-linkedin-login-oauth2";
-
+import PageNotFound from './component/NotFound/PageNotFound'
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
@@ -26,7 +26,9 @@ function App() {
       <Route path="/home" element={<Home />} />
       <Route path="/search/:query" element={<Search />} />
       <Route path="/linkedin" element={<LinkedInCallback />} />
-    </Routes>
+      <Route path="*" element={<PageNotFound />} />    
+      
+      </Routes>
   );
 }
 

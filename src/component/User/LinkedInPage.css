@@ -1,0 +1,20 @@
+.text-center{
+    margin:7% 30%;
+       color: #05313d;
+}
+
+
+.form-signin{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-signin input{
+    min-width: 100px;
+    width: 400px;
+}
+
+h1{
+    color: #05313d;
+}

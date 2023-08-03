@@ -1,5 +1,5 @@
 import React from "react";
-import TestContainer from "../CompanyDetails/TestContainer";
+import TestContainer from "../CompanyDetails/MapContainer";
 
 function RisizableDiv({ mapData }) {
   const { latitude, longitude } = mapData;
