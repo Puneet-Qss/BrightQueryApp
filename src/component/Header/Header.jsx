@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Logo from "../../assets/Logo.svg";
+import Logo from "../../assets/BQ-Logo-ccdbf4d6.svg";
 import "./header.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Header({ className }) {
   const navigate = useNavigate();
@@ -19,28 +19,32 @@ function Header({ className }) {
   };
 
   return (
-    <>
-      <div className={`home-container ${className}`}>
-        <img className="logo" src={Logo}   alt="logo" />
-        <br />
-        <form className="form-inline" onSubmit={submitHandle}>
-          <div className="input-group mb-2 mr-sm-2">
-            <input
-              type="text"
-              className="form-control input input-lg"
-              id="inlineFormInputGroupUsername2"
-              placeholder="Search Company By Name"
-              value={searchValue}
-              onChange={handleChange}
-            />
-          </div>
-
-          <button type="submit" className="btn btn-primary mb-2">
+    <div className="home-container">
+      <div className="logo-container">
+        <img className="logo" src={Logo} alt="logo" width={'50px'} height={'50px'} />
+      </div>
+      <form className="search-form" onSubmit={submitHandle}>
+        <div className="input-group">
+          <input
+            type="text"
+            className="form-control input input-lg"
+            placeholder="Search Company By Name"
+            value={searchValue}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            className="form-control input input-lg"
+            placeholder="Search Company By Name"
+            value={searchValue}
+            onChange={handleChange}
+          />
+          <button type="submit" className="btn btn-primary">
             Search
           </button>
-        </form>
-      </div>
-    </>
+        </div>
+      </form>
+    </div>
   );
 }
 

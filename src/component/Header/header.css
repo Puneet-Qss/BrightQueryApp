@@ -1,49 +1,36 @@
-* {
-  margin: 0;
-  padding: 0;
-}
+/* Keep your existing CSS and add the following styles */
 
 .home-container {
-  text-align: center;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  margin: 3% 5%;
-
-  @media screen and (min-width: 768px) {
-    margin: 3% 10%;
-  }
+  padding: 10px 20px; /* Adjust padding as needed */
 }
 
-.btn , .form-inline {
-  min-width: 100px;
+.logo-container {
+  flex: 1;
 }
 
-form {
+.search-form {
+  flex: 2;
   display: flex;
-  flex-direction: row;
+  justify-content: flex-end;
   align-items: center;
-  gap: 10px;
-  width: 100%;
-  max-width: 600px;
-  margin-top: 10px;
-
-  @media screen and (max-width: 767px) {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
 
-.input::placeholder {
-  opacity: 0.5;
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-.input {
-  flex: 1; /* Take remaining space */
+.input-group input {
+  width: 150px;
+  max-width: 100%;
 }
 
 .logo {
   height: auto;
-  width: 80%;
+  width: 100%;
   max-width: 400px;
 }

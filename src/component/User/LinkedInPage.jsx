@@ -5,7 +5,7 @@ import linkedin from "react-linkedin-login-oauth2/assets/linkedin.png";
 import { useNavigate } from "react-router-dom";
 import "./LinkedInPage.css";
 import axios from "axios";
-import logo from "../../assets/favicon.ico";
+import logo from "../../assets/Logo.svg";
 
 function LinkedInPage({ onSignInStatusChange }) {
   const navigate = useNavigate();
@@ -57,8 +57,8 @@ function LinkedInPage({ onSignInStatusChange }) {
     <>
       <div className="text-center">
         <form className="form-signin" onSubmit={onSubmitHandler}>
-          <img src={logo} alt="logo" />
-          <h1 className="h3 mb-3 font-weight-normal">Welcome to BrightQuery</h1>
+          <img src={logo}  alt="logo" height={'100px'}/>
+          {/* <h1 className="h3 mb-3 font-weight-normal">Welcome to BrightQuery</h1> */}
           <label htmlFor="inputEmail" className="sr-only">
             Email address
           </label>
@@ -81,7 +81,7 @@ function LinkedInPage({ onSignInStatusChange }) {
             required=""
           />
 
-          <button className="btn  btn-outline-primary " type="submit">
+          <button className="btn  btn-outline-primary " type="submit"style={{ maxWidth: "200px", cursor: "pointer", marginLeft:'90px' }}>
             Sign Up
           </button>
          
@@ -90,7 +90,7 @@ function LinkedInPage({ onSignInStatusChange }) {
               onClick={linkedInLogin}
               src={linkedin}
               alt="Log in with Linked In"
-              style={{ maxWidth: "200px", cursor: "pointer" }}
+              style={{ maxWidth: "200px", cursor: "pointer", marginLeft:'70px' }}
             />
           </Wrapper>
         </form>

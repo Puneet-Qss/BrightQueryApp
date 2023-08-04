@@ -19,6 +19,7 @@ function Search() {
       try {
         const response = await axios.get("https://searchapi.brightquery.com/search", {
           params: {
+            hits:300,
             query: query,
           },
         });
@@ -54,7 +55,7 @@ function Search() {
         </div>
       ) : (
         <>
-          <Header className="searchHeader" />
+          <Header />
           <hr />
           <div className="main-container">
             <Sidebar />

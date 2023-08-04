@@ -6,7 +6,7 @@ function RisizableDiv({ mapData }) {
 
   return (
     <>
-      <TestContainer latitude={latitude} longitude={longitude} />
+     <TestContainer latitude={latitude} longitude={longitude} />
     </>
   );
 }

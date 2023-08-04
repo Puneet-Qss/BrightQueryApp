@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./tablecontainer.css";
 import CompanyDetails from "../CompanyDetails/CompanyDetails";
 import RisizableDiv from "../ShowMapContainer/RisizableDiv";
+import Pagination from "react-pagination-js";
+import "react-pagination-js/dist/styles.css";
+import ReactPaginate from "react-paginate";
 
 function TableContainer({ results, index, BQID }) {
   const [sortOrder, setSortOrder] = useState("asc");
@@ -60,16 +63,13 @@ function TableContainer({ results, index, BQID }) {
     console.log("Map Data ", mapData);
   }, [showMap, mapData]);
 
-  // State variables for pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10; // Number of items to display per page
+  const itemsPerPage = 10;
 
-  // Calculate the index of the first and last items to display on the current page
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
   const currentItems = sortedData.slice(firstIndex, lastIndex);
 
-  // Handle page change
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -77,7 +77,7 @@ function TableContainer({ results, index, BQID }) {
   return (
     <>
       <div className="side-content">
-        <div className="table-wrapper">
+        <div className="table-container">
           <table>
             <thead className="firstHead">
               <tr>
@@ -86,28 +86,28 @@ function TableContainer({ results, index, BQID }) {
                     className="fa-solid fa-sort"
                     style={{ color: "#a3a3a3" }}
                   ></i>
-                  Company
+                  &nbsp; Company
                 </th>
                 <th onClick={() => handleSort("Status")}>
                   <i
                     className="fa-solid fa-sort"
                     style={{ color: "#a3a3a3" }}
                   ></i>
-                  Status
+                  &nbsp; Status
                 </th>
                 <th onClick={() => handleSort("Revenue")}>
                   <i
                     className="fa-solid fa-sort"
                     style={{ color: "#a3a3a3" }}
                   ></i>
-                  Revenue
+                  &nbsp; Revenue
                 </th>
                 <th onClick={() => handleSort("Headcount")}>
                   <i
                     className="fa-solid fa-sort"
                     style={{ color: "#a3a3a3" }}
                   ></i>
-                  Headcount
+                  &nbsp; Headcount
                 </th>
               </tr>
             </thead>
@@ -164,59 +164,21 @@ function TableContainer({ results, index, BQID }) {
               })}
             </tbody>
           </table>
+          <div
+            style={{ minWidth: "350px", marginTop: "10px", marginLeft: "450px" }}
+          >
+            <Pagination
+              currentPage={currentPage}
+              totalSize={data.length}
+              sizePerPage={itemsPerPage}
+              changeCurrentPage={handlePageChange}
+              numberOfPagesNextToActivePage={2}
+            />
+          </div>
         </div>
-        <nav aria-label="Page navigation example">
-          <ul className="pagination justify-content-end">
-            <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-              <a
-                className="page-link"
-                href="#"
-                tabIndex="-1"
-                aria-disabled="true"
-                onClick={() => handlePageChange(currentPage - 1)}
-              >
-                Previous
-              </a>
-            </li>
-            {Array.from({
-              length: Math.ceil(sortedData.length / itemsPerPage),
-            }).map((_, index) => (
-              <li
-                key={index}
-                className={`page-item ${
-                  currentPage === index + 1 ? "active" : ""
-                }`}
-              >
-                <a
-                  className="page-link"
-                  href="#"
-                  onClick={() => handlePageChange(index + 1)}
-                >
-                  {index + 1}
-                </a>
-              </li>
-            ))}
-            <li
-              className={`page-item ${
-                currentPage === Math.ceil(sortedData.length / itemsPerPage)
-                  ? "disabled"
-                  : ""
-              }`}
-            >
-              <a
-                className="page-link"
-                href="#"
-                onClick={() => handlePageChange(currentPage + 1)}
-              >
-                Next
-              </a>
-            </li>
-          </ul>
-        </nav>
       </div>
 
-      {/* Bootstrap Pagination component */}
-
+      {/* MAP DATA  */}
       {showMap ? (
         <div className="map-wrapper" style={{ width: "50vw" }}>
           <RisizableDiv mapData={mapData} />
