@@ -5,15 +5,15 @@ import arrowLeft from "../../assets/arrow-left.png";
 import list from "../../assets/list.png";
 import file from "../../assets/file.png";
 import saveSearch from "../../assets/save-search.png";
-import "./sidebar.css";
+import "../../assets/css/sidebar.css";
 
 function Sidebar() {
 
 
   return (
     <>
-      <div className="sidebar">
-        <div className="menu">
+    <div class="sidebar">
+    <div className="menu">
           <div className="menu-item" style={{ marginTop: "5px" }}>
             <img src={menu} height="15px" width="15px" alt="menu" />
             <span>MENU</span>
@@ -220,7 +220,10 @@ function Sidebar() {
           </select>
         </div>
 
-        <button className="clearFilter">Clear all filters</button>
+
+        <div class="sidebar-footer">
+          <button>Clear all filters</button>
+        </div>
       </div>
     </>
   );

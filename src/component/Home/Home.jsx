@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 import file from '../../assets/file.png';
 import folder from '../../assets/folder.png';
 import user from '../../assets/user.png';
-import "./home.css";
+import "../../assets/css/home.css";
 
 function Home() {
   const [isHidden1, setIsHidden1] = useState(true);

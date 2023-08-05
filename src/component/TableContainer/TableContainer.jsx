@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./tablecontainer.css";
+import "../../assets/css/tablecontainer.css";
 import CompanyDetails from "../CompanyDetails/CompanyDetails";
 import RisizableDiv from "../ShowMapContainer/RisizableDiv";
 import Pagination from "react-pagination-js";
@@ -79,6 +79,12 @@ function TableContainer({ results, index, BQID }) {
       <div className="side-content">
         <div className="table-container">
           <table>
+          <colgroup>
+            <col style={{"width": "65%" }}/>
+            <col style={{"width": "20%"}} />
+            <col style={{"width": "20%" }}/>
+            <col style={{"width": "20%"} }/>
+          </colgroup>
             <thead className="firstHead">
               <tr>
                 <th onClick={() => handleSort("Company")}>

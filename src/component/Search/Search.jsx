@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
-import "./search.css";
+import "../../assets/css/search.css";
 import Sidebar from "../Sidebar/Sidebar";
 import TableContainer from "../TableContainer/TableContainer";
 import { RotatingLines } from "react-loader-spinner";
@@ -48,7 +48,7 @@ function Search() {
           <RotatingLines
             strokeColor="grey"
             strokeWidth="5"
-            animationDuration="0.75"
+            animationDuration="0.5"
             width="96"
             visible={true}
           />
@@ -61,6 +61,7 @@ function Search() {
             <Sidebar />
             <TableContainer results={searchResults} />
           </div>
+      
         </>
       )}
     </>

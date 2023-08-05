@@ -1,27 +1,23 @@
 .side-content {
-  height: 60vh;
   overflow-y: auto;
-  margin: auto;
   padding: 20px;
   font-size: 13px;
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 100vh;
   overflow-y: scroll;
+  margin: 0;
+  width: 90%;
 }
+
 .table-container {
-  width: 100%;
   overflow-x: auto;
 }
 
-.firstHead{
-  background-color: #00bef3;
-  height: 40px;
-}
 
 
 table {
-  width: 100%;
+  width:auto;
   border-collapse: collapse;
 }
 
@@ -69,7 +65,7 @@ tbody {
 
 .mapicon{
   position: relative;
-  top: 140px;
+  top: 128px;
 }
 
 .companyIcon{
