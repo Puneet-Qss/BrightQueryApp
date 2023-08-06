@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Logo from "../../assets/BQ-Logo-ccdbf4d6.svg";
-// import "./header.css";
 import "../../assets/css/header.css";
 import { useNavigate } from "react-router-dom";
 
-function Header({ className }) {
+function Header({ classNameName }) {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
 
@@ -14,6 +13,13 @@ function Header({ className }) {
       navigate(`/search/${searchValue}`);
     }
   };
+  
+  const logoutHandler = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("isSignedIn");
+    
+    navigate("/login");
+  };
 
   const handleChange = (e) => {
     setSearchValue(e.target.value);
@@ -21,8 +27,8 @@ function Header({ className }) {
 
   return (
     <>
-      <header class="header">
-        <h1 class="logo">
+      <header className="header">
+        <h1 className="logo">
           <a href="/">
             <img
               src="https://brightquery.com//wp-content/uploads/2020/07/BQ-Logo-1-1.svg"
@@ -33,7 +39,7 @@ function Header({ className }) {
             />
           </a>
         </h1>
-        <ul class="main-nav">
+        <ul className="main-nav">
           <form onSubmit={submitHandle}>
             <input
               type="text"
@@ -48,6 +54,7 @@ function Header({ className }) {
               placeholder="Enter your fields"
             />
             <button type="submit">Search</button>
+            <button onClick={logoutHandler}>LOGOUT</button>
           </form>
         </ul>
       </header>

@@ -13,15 +13,22 @@ function LinkedInPage({ onSignInStatusChange }) {
   const { linkedInLogin } = useLinkedIn({
     clientId: "788bxzadw543vg",
     redirectUri: `http://localhost:3000/linkedin`,
-    onSuccess: async (code) => {
-      console.log(code);
-      navigate("/");
-      onSignInStatusChange(true); 
-      console.log("Onsgin", onSignInStatusChange)
+
+    onSuccess: async (response) => {
+      console.log(response);
+      const { code, state } = response;
+      console.log("LinkedIn OAuth Response:", response);
+      const token = state;
+     
+      localStorage.setItem("isSignedIn", "true");
+      localStorage.setItem("token", token);
+
+    onSignInStatusChange(true); 
+    navigate("/home");
     },
     scope: "r_emailaddress r_liteprofile",
     onError: (error) => {
-      console.log(error);
+      console.log("LinkedIn OAuth Error:", error);
     },
   });
 
@@ -58,7 +65,6 @@ function LinkedInPage({ onSignInStatusChange }) {
       <div className="text-center">
         <form className="form-signin" onSubmit={onSubmitHandler}>
           <img src={logo}  alt="logo" height={'100px'}/>
-          {/* <h1 className="h3 mb-3 font-weight-normal">Welcome to BrightQuery</h1> */}
           <label htmlFor="inputEmail" className="sr-only">
             Email address
           </label>

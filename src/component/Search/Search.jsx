@@ -9,6 +9,7 @@ import axios from "axios";
 
 function Search() {
   const { query } = useParams();
+  
   console.log(query);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -19,7 +20,7 @@ function Search() {
       try {
         const response = await axios.get("https://searchapi.brightquery.com/search", {
           params: {
-            hits:300,
+            hits:200,
             query: query,
           },
         });
