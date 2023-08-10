@@ -3,24 +3,22 @@ import dropDown from "../../assets/drop-down-arrow.png";
 import menu from "../../assets/menu.png";
 import arrowLeft from "../../assets/arrow-left.png";
 import list from "../../assets/list.png";
-import file from "../../assets/file.png";
 import saveSearch from "../../assets/save-search.png";
 import "../../assets/css/sidebar.css";
 
+// ... (previous imports and component code)
+
 function Sidebar() {
   const [menuOpen, setMenuOpen] = useState(true);
-  const [sidebarWidth, setSidebarWidth] = useState("20%");
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-    setSidebarWidth(menuOpen ? "5%" : "20%");
   };
 
   return (
-    <>
-      <div class="sidebar" >
-        <div className="menu">
-          <div
+    <div className={`sidebar ${!menuOpen ? "collapsed" : ""}`}>
+      <div className="menu">
+      <div
             className="menu-item"
             style={{ marginTop: "5px" }}
             onClick={toggleMenu}
@@ -47,21 +45,7 @@ function Sidebar() {
             <img src={saveSearch} height="15px" width="15px" alt="" />
             <span>Save search</span>
           </div>
-        </div>
-        <div className="safe-search">
-          <img
-            src={file}
-            height="17px"
-            width="20px"
-            alt=""
-            style={{ marginLeft: "20px" }}
-          />
-          <span>Search Filter</span>
-        </div>
-
-        {menuOpen && (
-          <>
-            <div className="dropdown">
+      <div className="dropdown">
               <select
                 name="choose value"
                 id="input"
@@ -237,14 +221,13 @@ function Sidebar() {
                 <option value="">choose 1</option>
               </select>
             </div>
-
             <div class="sidebar-footer">
               <button>Clear all filters</button>
             </div>
-          </>
-        )}
       </div>
-    </>
+    
+   
+    </div>
   );
 }
 

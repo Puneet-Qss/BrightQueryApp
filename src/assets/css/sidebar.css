@@ -1,10 +1,91 @@
+/* ... (previous styles) */
 
 .sidebar {
-    width: 20%;
-    padding: 10px; /* Add padding for better spacing */
-    background-color: #f8f8f8;
-    overflow-y: auto; /* Enable scrolling for the sidebar */
+  width: 20%;
+  height: auto;
+  transition: width 0.3s ease, height 0.3s ease; /* Add height transition */
+  overflow: hidden;
+}
+
+.sidebar.collapsed {
+  width: 5%;
+  height: 50px; /* Set a fixed collapsed height */
+}
+
+.menu-icon {
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+.sidebar.collapsed .menu-icon {
+  transform: rotate(180deg);
+}
+
+.menu-item {
+  height: auto;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  transition: all 0.3s ease; /* Add transition effect to individual menu items */
+}
+
+.sidebar.collapsed .menu-item {
+  padding: 10px; /* Adjust padding for collapsed items */
+}
+
+.menu-item img {
+  margin-right: 10px;
+}
+
+.menu-item span {
+  display: inline-block;
+}
+
+.submenu {
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.sidebar.collapsed .submenu {
+  max-height: 0;
+  opacity: 0;
+}
+
+.submenu.expanded {
+  max-height: 100%;
+  opacity: 1;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
   }
+
+  .sidebar.collapsed {
+    width: 50px;
+  }
+
+  .menu-item {
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+
+  .submenu {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  .sidebar.collapsed .submenu.expanded {
+    max-height: 100%;
+    opacity: 1;
+  }
+}
+
+
+
+/* ... your other CSS styles ... */
   
   .sidebar .top {
     background-color: #f8f8f8;
@@ -25,10 +106,7 @@
    
   }
 
-  .menu-icon{
-     margin-left: auto;
-  }
-  
+
   span {
     margin-left: 10px;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
@@ -48,8 +126,12 @@
 
   
   /* Scrollbar styling */
+
+
+
+  
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 6px;
   }
   
   ::-webkit-scrollbar-track {
