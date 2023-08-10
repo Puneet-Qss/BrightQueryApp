@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Logo from "../../assets/BQ-Logo-ccdbf4d6.svg";
 import "../../assets/css/header.css";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 function Header({ classNameName }) {
   const navigate = useNavigate();
@@ -18,6 +18,10 @@ function Header({ classNameName }) {
     localStorage.removeItem("token");
     localStorage.removeItem("isSignedIn");
     localStorage.removeItem("linkedin_oauth2_state")
+      swal("Success!", "Logout Successfully!", "success");
+      navigate("/");
+    
+
     navigate("/login");
   };
 

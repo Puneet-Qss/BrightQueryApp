@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "../../assets/css/LinkedInPage.css";
 import axios from "axios";
 import Swal from "sweetalert2";
-// import logo from "../../assets/Logo.svg";
+import logo from "../../assets/user-logo.svg";
 import swal from "sweetalert";
 
 function LinkedInPage({ onSignInStatusChange }) {
@@ -73,12 +73,14 @@ function LinkedInPage({ onSignInStatusChange }) {
   return (
     <>
       <div className="text-center">
+        <img src={logo} alt="logo" height={"100px"} />
+        <br />
+        <br />
+        <h1>Welcome to BrightQuery</h1>
+        <p>Please sign in</p>
+
         <form className="form-signin" onSubmit={onSubmitHandler}>
-          {/* <img src={logo}  alt="logo" height={'100px'}/> */}
-          <h1>Welcome to BrightQuery</h1>
-          <label htmlFor="inputEmail" className="sr-only">
-            Email address
-          </label>
+          <label style={{marginRight:"auto"}} htmlFor="inputEmail">Email</label>
           <input
             type="email"
             id="inputEmail"
@@ -87,9 +89,8 @@ function LinkedInPage({ onSignInStatusChange }) {
             required=""
             autoFocus=""
           />
-          <label htmlFor="inputPassword" className="sr-only">
-            Password
-          </label>
+                 <label style={{marginRight:"auto"}} htmlFor="inputPassword">Password</label>
+
           <input
             type="password"
             id="inputPassword"

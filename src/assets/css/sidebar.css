@@ -19,7 +19,14 @@
   }
   
   .menu-item {
-    padding: 5px;
+   display: flex;
+   justify-content: left;
+   align-items: center;
+   
+  }
+
+  .menu-icon{
+     margin-left: auto;
   }
   
   span {

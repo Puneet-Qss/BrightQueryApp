@@ -1,8 +1,7 @@
 .text-center {
-    margin: 5% 10%;
     color: #05313d;
     background-color: #f8f8f8;
-    padding: 3%;
+  padding: 3%;
   }
 
   .logo-container img{
@@ -32,6 +31,10 @@
     margin-top: 20px;
   }
 
+  .form-signin label{
+    margin-left: 15%;
+    font-size: 14px;
+  }
   
   h1 {
     color: #05313d;
