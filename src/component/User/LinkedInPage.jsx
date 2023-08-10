@@ -3,9 +3,11 @@ import styled from "styled-components";
 import { useLinkedIn } from "react-linkedin-login-oauth2";
 import linkedin from "react-linkedin-login-oauth2/assets/linkedin.png";
 import { useNavigate } from "react-router-dom";
-import "./LinkedInPage.css";
+import "../../assets/css/LinkedInPage.css";
 import axios from "axios";
-import logo from "../../assets/Logo.svg";
+import Swal from "sweetalert2";
+// import logo from "../../assets/Logo.svg";
+import swal from "sweetalert";
 
 function LinkedInPage({ onSignInStatusChange }) {
   const navigate = useNavigate();
@@ -19,12 +21,12 @@ function LinkedInPage({ onSignInStatusChange }) {
       const { code, state } = response;
       console.log("LinkedIn OAuth Response:", response);
       const token = state;
-     
+
       localStorage.setItem("isSignedIn", "true");
       localStorage.setItem("token", token);
 
-    onSignInStatusChange(true); 
-    navigate("/home");
+      onSignInStatusChange(true);
+      navigate("/home");
     },
     scope: "r_emailaddress r_liteprofile",
     onError: (error) => {
@@ -37,34 +39,43 @@ function LinkedInPage({ onSignInStatusChange }) {
     const email = e.target.querySelector("#inputEmail").value;
     const password = e.target.querySelector("#inputPassword").value;
     const userData = { username: email, password };
-    
+
     try {
-      const response = await axios.post("http://localhost:8080/users", userData);
-      console.log(response.status);
-  
+      const response = await axios.post(
+        "http://localhost:5000/signup",
+        userData
+      );
+
       if (response.status === 200) {
-        console.log("Signup Successful!");
-        navigate("/");
-        onSignInStatusChange(true);
-  
-        // Assuming the response contains the token
         const token = response.data.token;
         localStorage.setItem("token", token);
-      } else {
-        alert("User Already Exists");
+
+        onSignInStatusChange(true);
+        if (response.data.exists) {
+          swal("Oops!", "Already Existing User", "error");
+          navigate("/login");
+        } else {
+          swal("Success!", "Verification email sent succesfully!", "success");
+          navigate("/");
+        }
+
+        // navigate("/");
       }
     } catch (error) {
-      console.error("Error during signup:", error);
-      alert("User Already Exists");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Error during signup",
+      });
     }
   };
-  
 
   return (
     <>
       <div className="text-center">
         <form className="form-signin" onSubmit={onSubmitHandler}>
-          <img src={logo}  alt="logo" height={'100px'}/>
+          {/* <img src={logo}  alt="logo" height={'100px'}/> */}
+          <h1>Welcome to BrightQuery</h1>
           <label htmlFor="inputEmail" className="sr-only">
             Email address
           </label>
@@ -87,18 +98,24 @@ function LinkedInPage({ onSignInStatusChange }) {
             required=""
           />
 
-          <button className="btn  btn-outline-primary " type="submit"style={{ maxWidth: "200px", cursor: "pointer", marginLeft:'90px' }}>
-            Sign Up
-          </button>
-         
-          <Wrapper>
-            <img
-              onClick={linkedInLogin}
-              src={linkedin}
-              alt="Log in with Linked In"
-              style={{ maxWidth: "200px", cursor: "pointer", marginLeft:'70px' }}
-            />
-          </Wrapper>
+          <div className="button-section">
+            <button
+              className="btn btn-outline-primary w-100"
+              type="submit"
+              style={{ maxWidth: "200px", cursor: "pointer" }}
+            >
+              Sign Up
+            </button>
+
+            <Wrapper>
+              <img
+                onClick={linkedInLogin}
+                src={linkedin}
+                alt="Log in with Linked In"
+                style={{ maxWidth: "200px", cursor: "pointer" }}
+              />
+            </Wrapper>
+          </div>
         </form>
       </div>
     </>

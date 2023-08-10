@@ -17,7 +17,7 @@ function Header({ classNameName }) {
   const logoutHandler = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("isSignedIn");
-    
+    localStorage.removeItem("linkedin_oauth2_state")
     navigate("/login");
   };
 
@@ -47,12 +47,7 @@ function Header({ classNameName }) {
               value={searchValue}
               placeholder="Search Company By Name"
             />
-            {/* <input
-              type="text"
-              onChange={handleChange}
-              value={searchValue}
-              placeholder="Enter your fields"
-            /> */}
+            
             <button type="submit">Search</button>
             <button onClick={logoutHandler}>LOGOUT</button>
           </form>
