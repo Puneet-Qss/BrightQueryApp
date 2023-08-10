@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function Header({ classNameName }) {
   const navigate = useNavigate();
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState(""); 
 
   const submitHandle = (e) => {
     e.preventDefault();
@@ -47,12 +47,12 @@ function Header({ classNameName }) {
               value={searchValue}
               placeholder="Search Company By Name"
             />
-            <input
+            {/* <input
               type="text"
               onChange={handleChange}
               value={searchValue}
               placeholder="Enter your fields"
-            />
+            /> */}
             <button type="submit">Search</button>
             <button onClick={logoutHandler}>LOGOUT</button>
           </form>

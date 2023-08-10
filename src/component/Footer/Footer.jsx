@@ -3,7 +3,7 @@ import '../../assets/css/footer.css';
 
 function Footer() {
   return (
-    <footer>&copy; QSS TECHNOSOFT</footer>
+    <footer> © 2023 BrightQuery, Inc. All rights reserved. U.S. patent pending. Contact: sales@brightquery.com or 1-888-BQDATA1.</footer>
   );
 }
 

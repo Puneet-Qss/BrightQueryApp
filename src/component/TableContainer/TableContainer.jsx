@@ -5,6 +5,12 @@ import RisizableDiv from "../ShowMapContainer/RisizableDiv";
 import Pagination from "react-pagination-js";
 import "react-pagination-js/dist/styles.css";
 import ReactPaginate from "react-paginate";
+import {
+  ResizeContent,
+  ResizeHandleRight,
+  ResizePanel,
+  ResizeHandleLeft,
+} from "react-hook-resize-panel";
 
 function TableContainer({ results, index, BQID }) {
   const [sortOrder, setSortOrder] = useState("asc");
@@ -79,12 +85,12 @@ function TableContainer({ results, index, BQID }) {
       <div className="side-content">
         <div className="table-container">
           <table>
-          <colgroup>
-            <col style={{"width": "65%" }}/>
-            <col style={{"width": "20%"}} />
-            <col style={{"width": "20%" }}/>
-            <col style={{"width": "20%"} }/>
-          </colgroup>
+            <colgroup>
+              <col style={{ width: "65%" }} />
+              <col style={{ width: "20%" }} />
+              <col style={{ width: "20%" }} />
+              <col style={{ width: "20%" }} />
+            </colgroup>
             <thead className="firstHead">
               <tr>
                 <th onClick={() => handleSort("Company")}>
@@ -171,7 +177,11 @@ function TableContainer({ results, index, BQID }) {
             </tbody>
           </table>
           <div
-            style={{ minWidth: "350px", marginTop: "10px", marginLeft: "450px" }}
+            style={{
+              minWidth: "350px",
+              marginTop: "10px",
+              marginLeft: "450px",
+            }}
           >
             <Pagination
               currentPage={currentPage}
@@ -183,12 +193,15 @@ function TableContainer({ results, index, BQID }) {
           </div>
         </div>
       </div>
-
+     
       {/* MAP DATA  */}
       {showMap ? (
-        <div className="map-wrapper" style={{ width: "50vw" }}>
-          <RisizableDiv mapData={mapData} />
-        </div>
+        <>
+          
+          <div className="map-wrapper" style={{ width: "50vw" }}>
+            <RisizableDiv mapData={mapData} />
+          </div>
+        </>
       ) : (
         ""
       )}

@@ -20,6 +20,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const salt = await bcrypt.genSalt(10);
   const hashedPass = await bcrypt.hash(password, salt);
+
   // create user
   const user = await User.create({
     username,
@@ -27,18 +28,17 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    res.status(201).json({
+    res.status(200).json({
       _id: user.id,
       username: user.username,
-      password: user.password,
       token: generateWebToken(user._id),
     });
   } else {
     res.status(400);
     throw new Error("Invalid user data!");
   }
-
-  res.json({ message: "Register User Succesfully!" });
+  
+  
 });
 
 const getUser = asyncHandler(async (req, res) => {

@@ -7,9 +7,10 @@ import { RotatingLines } from "react-loader-spinner";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
+
 function Search() {
   const { query } = useParams();
-  
+
   console.log(query);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -18,12 +19,15 @@ function Search() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get("https://searchapi.brightquery.com/search", {
-          params: {
-            hits:200,
-            query: query,
-          },
-        });
+        const response = await axios.get(
+          "https://searchapi.brightquery.com/search",
+          {
+            params: {
+              hits: 200,
+              query: query,
+            },
+          }
+        );
         console.log(response);
         setSearchResults(response.data);
         setIsLoading(false);
@@ -59,10 +63,13 @@ function Search() {
           <Header />
           <hr />
           <div className="main-container">
+          
             <Sidebar />
+
             <TableContainer results={searchResults} />
+
+           
           </div>
-      
         </>
       )}
     </>
