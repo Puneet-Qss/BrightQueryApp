@@ -6,7 +6,6 @@ import list from "../../assets/list.png";
 import saveSearch from "../../assets/save-search.png";
 import "../../assets/css/sidebar.css";
 
-// ... (previous imports and component code)
 
 function Sidebar() {
   const [menuOpen, setMenuOpen] = useState(true);

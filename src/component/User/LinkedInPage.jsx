@@ -39,12 +39,14 @@ function LinkedInPage({ onSignInStatusChange }) {
     const email = e.target.querySelector("#inputEmail").value;
     const password = e.target.querySelector("#inputPassword").value;
     const userData = { username: email, password };
+    console.log("Userdata", userData);
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/signup",
+        "http://localhost:5000/login",
         userData
       );
+      console.log("respon", response);
 
       if (response.status === 200) {
         const token = response.data.token;
@@ -80,7 +82,9 @@ function LinkedInPage({ onSignInStatusChange }) {
         <p>Please sign in</p>
 
         <form className="form-signin" onSubmit={onSubmitHandler}>
-          <label style={{marginRight:"auto"}} htmlFor="inputEmail">Email</label>
+          <label style={{ marginRight: "auto" }} htmlFor="inputEmail">
+            Email
+          </label>
           <input
             type="email"
             id="inputEmail"
@@ -89,7 +93,9 @@ function LinkedInPage({ onSignInStatusChange }) {
             required=""
             autoFocus=""
           />
-                 <label style={{marginRight:"auto"}} htmlFor="inputPassword">Password</label>
+          <label style={{ marginRight: "auto" }} htmlFor="inputPassword">
+            Password
+          </label>
 
           <input
             type="password"

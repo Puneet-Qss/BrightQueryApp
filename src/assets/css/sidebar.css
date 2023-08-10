@@ -126,10 +126,7 @@
 
   
   /* Scrollbar styling */
-
-
-
-  
+ 
   ::-webkit-scrollbar {
     width: 6px;
   }

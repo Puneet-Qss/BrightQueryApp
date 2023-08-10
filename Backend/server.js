@@ -15,9 +15,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/', require('./routes/userRoutes'));
 
-app.use('/' , require('./routes/userRoutes'))
 
-app.use(errorHandler)
+app.use(errorHandler)   
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
