@@ -21,12 +21,11 @@ function Sidebar() {
 
   <div className="top" >
           <div className="menu-item1 "style={{display:"flex", alignItems:"center"}}onClick={toggleMenu}>
-             <span>MENU</span>
+          <i class="fa fa-bars" aria-hidden="true"></i>     <span>MENU</span>
              <i class="fa fa-arrow-left" style={{marginLeft:"auto", cursor:"pointer"}} aria-hidden="true"></i>
           </div> 
         <div className="menu-item ">
-          <img src={saveSearch} height="15px" width="15px" alt="" />
-          <span>Save search</span>
+          <span> <i class="fa fa-floppy-o" aria-hidden="true"></i> Save search</span>
         </div>
   </div>
  

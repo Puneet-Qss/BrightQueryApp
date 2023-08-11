@@ -3,6 +3,8 @@
   width: 35%;
   transition: width 0.3s ease, height 0.3s ease; /* Add height transition */
   overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
 }
 
 .sidebar.collapsed {
@@ -24,6 +26,7 @@
   display: flex;
   align-items: center;
   margin-top: 20px;
+  margin-left: auto;
   transition: all 0.3s ease; 
 }
 
@@ -119,8 +122,7 @@
   }
   
   .menu {
-    background-color: #f8f8f8;
-    padding: 15px;
+    background-color: white;
     height: 70vh;
   }
 
@@ -164,8 +166,10 @@
     width: 100%;
     border: 1px;
   }
-  
 
-  .top{
-    background-color: #F8F8F8 !important;
-  }
+
+.top {
+  background-color: #F8F8F8 !important;
+  margin: 0; /* Remove all margins */
+  padding:5%; /* Remove padding as well if needed */
+}
