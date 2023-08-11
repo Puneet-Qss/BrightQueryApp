@@ -9,10 +9,11 @@ import {
   ResizeContent,
   ResizeHandleRight,
   ResizePanel,
-  ResizeHandleLeft,
+  ResizeHandleLeft
 } from "react-hook-resize-panel";
 
-function TableContainer({ results, index, BQID }) {
+function TableContainer({ results, index, BQID, search }) {
+
   const [sortOrder, setSortOrder] = useState("asc");
   const [sortColumn, setSortColumn] = useState("Company");
   const [selectedRowIndex, setSelectedRowIndex] = useState(true);
@@ -21,6 +22,8 @@ function TableContainer({ results, index, BQID }) {
   const [showMap, setShowMap] = useState(false);
 
   const data = results?.root?.children;
+  console.log("data count", results?.root?.children.length)
+  console.log("earch Content",search)
 
   const customSort = (a, b) => {
     const fieldA = a.fields.bq_organization_name.toLowerCase();
@@ -70,7 +73,7 @@ function TableContainer({ results, index, BQID }) {
   }, [showMap, mapData]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
+  const itemsPerPage = 20;
 
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
@@ -83,13 +86,26 @@ function TableContainer({ results, index, BQID }) {
   return (
     <>
       <div className="side-content">
+          <span>{results?.root?.children.length} results of {search}</span>
+          <div className="filter-tags">
+            <span>Filter Tags:</span>
+           
+            <button> <i class="fa fa-history fa-sm" aria-hidden="true"></i> Clear</button>
+          </div>
+          <div className="display-content">
+            <span>Displaying 20 of 1661 results on page</span>
+            <span>Prev</span>
+            <span>Next</span>
+          </div>
+          <br />
         <div className="table-container">
+         
           <table>
             <colgroup>
               <col style={{ width: "65%" }} />
-              <col style={{ width: "20%" }} />
-              <col style={{ width: "20%" }} />
-              <col style={{ width: "20%" }} />
+              <col style={{ width: "7%" }} />
+              <col style={{ width: "100%" }} />
+              <col style={{ width: "100%", }} />
             </colgroup>
             <thead className="firstHead">
               <tr>
@@ -125,9 +141,10 @@ function TableContainer({ results, index, BQID }) {
             </thead>
 
             <tbody>
-              {currentItems.map((data, index) => {
+              {
+              currentItems.map((data, i) => {
                 return (
-                  <tr key={index} className="first-row">
+                  <tr key={i} className="first-row">
                     <td className="firstData">
                       <div className="row-details">
                         <div className="icon">
@@ -177,11 +194,8 @@ function TableContainer({ results, index, BQID }) {
             </tbody>
           </table>
           <div
-            style={{
-              minWidth: "350px",
-              marginTop: "10px",
-              marginLeft: "450px",
-            }}
+           
+          className="pagination"
           >
             <Pagination
               currentPage={currentPage}

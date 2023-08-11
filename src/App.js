@@ -9,6 +9,7 @@ import PageNotFound from './component/NotFound/PageNotFound';
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [authToken, setAuthToken] =  useState(false);
+
   useEffect(() => {
     // Check if the user was previously signed in (using local storage)
     const storedSignInStatus = localStorage.getItem("isSignedIn");
@@ -20,6 +21,7 @@ function App() {
   const handleSignInStatus = (status) => {
     setIsSignedIn(status);
     localStorage.setItem("isSignedIn", status ? "true" : "false");
+    localStorage.setItem("AuthToken", authToken)
   };
 
   useEffect(() => {

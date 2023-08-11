@@ -1,28 +1,25 @@
 .side-content {
   overflow-y: auto;
-  padding: 20px;
   font-size: 13px;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 70vh;
   overflow-y: scroll;
-  margin: 0;
-  width: 90%;
+  margin: 2%;
+  width: 100%;
 }
 
 .table-container {
   overflow-x: auto;
 }
 
-
-
 table {
-  width:auto;
+  width: auto;
   border-collapse: collapse;
 }
 
-th, td {
-  padding: 8px;
+th,
+td {
   text-align: left;
 }
 
@@ -30,9 +27,8 @@ th {
   position: sticky;
   top: 0;
   background-color: white;
-  z-index: 2;
+  z-index: 1;
 }
-
 
 tbody {
   font-size: 13px;
@@ -40,7 +36,6 @@ tbody {
   height: 100vh;
   overflow-y: auto;
 }
-
 
 .first-row {
   border-bottom: 1px solid;
@@ -63,14 +58,36 @@ tbody {
   flex-direction: column;
 }
 
-.mapicon{
+.mapicon {
   position: relative;
   top: 128px;
 }
 
-.companyIcon{
+.companyIcon {
   position: relative;
   top: 30px;
 }
 
+.pagination {
+  margin-left: 350px;
+}
 
+.display-content {
+  display: flex;
+  justify-content: right;
+  gap: 30px;
+}
+
+.filter-tags {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.filter-tags button{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  background-color: none;
+}

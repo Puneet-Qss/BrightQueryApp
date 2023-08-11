@@ -7,7 +7,6 @@ import { RotatingLines } from "react-loader-spinner";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-
 function Search() {
   const { query } = useParams();
 
@@ -23,7 +22,7 @@ function Search() {
           "https://searchapi.brightquery.com/search",
           {
             params: {
-              hits: 200,
+              hits:300,
               query: query,
             },
           }
@@ -63,12 +62,9 @@ function Search() {
           <Header />
           <hr />
           <div className="main-container">
-          
             <Sidebar />
-
-            <TableContainer results={searchResults} />
-
-           
+            <TableContainer results={searchResults} search= {query}/>
+            <footer/>
           </div>
         </>
       )}

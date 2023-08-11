@@ -1,14 +1,12 @@
-/* ... (previous styles) */
 
 .sidebar {
   width: 20%;
-  height: auto;
   transition: width 0.3s ease, height 0.3s ease; /* Add height transition */
   overflow: hidden;
 }
 
 .sidebar.collapsed {
-  width: 5%;
+  width: 10%;
   height: 50px; /* Set a fixed collapsed height */
 }
 
@@ -25,8 +23,14 @@
   height: auto;
   display: flex;
   align-items: center;
-  padding: 10px 20px;
-  transition: all 0.3s ease; /* Add transition effect to individual menu items */
+  margin-top: 20px;
+  transition: all 0.3s ease; 
+}
+
+.menu-item1{
+  display: flex;
+ align-content: center;
+ text-align: center;
 }
 
 .sidebar.collapsed .menu-item {
@@ -95,7 +99,6 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    height: 49vh;
     overflow-y: scroll;
   }
   
@@ -119,7 +122,10 @@
 
   .dropdown {
     margin-top: 20px;
+    height: 30vh;
   }
+
+
   .dropdown select {
     width: 95%;
   }
