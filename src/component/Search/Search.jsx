@@ -6,6 +6,7 @@ import TableContainer from "../TableContainer/TableContainer";
 import { RotatingLines } from "react-loader-spinner";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Footer from '../Footer/Footer';
 
 function Search() {
   const { query } = useParams();
@@ -64,7 +65,7 @@ function Search() {
           <div className="main-container">
             <Sidebar />
             <TableContainer results={searchResults} search= {query}/>
-            <footer/>
+            <Footer />
           </div>
         </>
       )}

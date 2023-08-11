@@ -18,30 +18,23 @@ function Sidebar() {
   return (
     <div className={`sidebar ${!menuOpen ? "collapsed" : ""}`}>
       <div className="menu">
-    <div
-          className="menu-item1 "
-          style={{display:"flex", alignItems:"center"}}
-          onClick={toggleMenu}
-        >
-       <i className="fa fa-bars" aria-hidden="true"></i>
-          <span>MENU</span>
-          <img
-           style={{marginLeft:"auto"}}
-            src={arrowLeft}
-            width="25px"
-            height="24px"
-            alt=""
-          />
-        </div> 
-        
-     
 
-        <div className="menu-item">
+  <div className="top" >
+          <div className="menu-item1 "style={{display:"flex", alignItems:"center"}}onClick={toggleMenu}>
+             <span>MENU</span>
+             <i class="fa fa-arrow-left" style={{marginLeft:"auto", cursor:"pointer"}} aria-hidden="true"></i>
+          </div> 
+        <div className="menu-item ">
           <img src={saveSearch} height="15px" width="15px" alt="" />
           <span>Save search</span>
         </div>
+  </div>
+ 
 
-        <div className="dropdown">
+
+
+   
+        <div className="dropdown" >
           <select
             name="choose value"
             id="input"
@@ -223,9 +216,9 @@ function Sidebar() {
             <option value="">choose 1</option>
             <option value="">choose 1</option>
           </select>
-        </div>
         <div class="sidebar-footer">
           <button>Clear all filters</button>
+        </div>
         </div>
       </div>
     </div>

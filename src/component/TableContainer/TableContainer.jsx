@@ -9,11 +9,10 @@ import {
   ResizeContent,
   ResizeHandleRight,
   ResizePanel,
-  ResizeHandleLeft
+  ResizeHandleLeft,
 } from "react-hook-resize-panel";
 
 function TableContainer({ results, index, BQID, search }) {
-
   const [sortOrder, setSortOrder] = useState("asc");
   const [sortColumn, setSortColumn] = useState("Company");
   const [selectedRowIndex, setSelectedRowIndex] = useState(true);
@@ -22,18 +21,50 @@ function TableContainer({ results, index, BQID, search }) {
   const [showMap, setShowMap] = useState(false);
 
   const data = results?.root?.children;
-  console.log("data count", results?.root?.children.length)
-  console.log("earch Content",search)
+  console.log("data count", results?.root?.children.length);
+  console.log("earch Content", search);
 
-  const customSort = (a, b) => {
-    const fieldA = a.fields.bq_organization_name.toLowerCase();
-    const fieldB = b.fields.bq_organization_name.toLowerCase();
+  const customSort = (column, order) => (a, b) => {
+    if (column === "Company") {
+      const fieldA = a.fields.bq_organization_name.toLowerCase();
+      const fieldB = b.fields.bq_organization_name.toLowerCase();
+      return order === "asc"
+        ? fieldA.localeCompare(fieldB)
+        : fieldB.localeCompare(fieldA);
+    } else if (column === "Status") {
+      const statusA = a.fields.bq_organization_isactive;
+      const statusB = b.fields.bq_organization_isactive;
 
-    if (sortOrder === "asc") {
-      return fieldA > fieldB ? 1 : -1;
+      if (statusA !== statusB) {
+        if (statusA) return order === "asc" ? -1 : 1;
+        else return order === "asc" ? 1 : -1;
+      }
+    } else if (column === "Revenue") {
+      const revenueA = parseFloat(a.fields.bq_revenue_mr) || 0;
+      const revenueB = parseFloat(b.fields.bq_revenue_mr) || 0;
+      return order === "asc" ? revenueA - revenueB : revenueB - revenueA;
     } else {
-      return fieldA < fieldB ? 1 : -1;
+      const fieldA = a.fields[column];
+      const fieldB = b.fields[column];
+
+      if (fieldA !== fieldB) {
+        if (typeof fieldA === "string" && typeof fieldB === "string") {
+          return order === "asc"
+            ? fieldA.localeCompare(fieldB)
+            : fieldB.localeCompare(fieldA);
+        } else {
+          return order === "asc"
+            ? fieldA < fieldB
+              ? -1
+              : 1
+            : fieldB < fieldA
+            ? -1
+            : 1;
+        }
+      }
     }
+
+    return 0;
   };
 
   const handleSort = (columnName) => {
@@ -45,7 +76,7 @@ function TableContainer({ results, index, BQID, search }) {
     }
   };
 
-  const sortedData = [...data].sort(customSort);
+  const sortedData = [...data].sort(customSort(sortColumn, sortOrder));
 
   const BQ_ID = (str) => {
     const delimiter = "::";
@@ -86,30 +117,34 @@ function TableContainer({ results, index, BQID, search }) {
   return (
     <>
       <div className="side-content">
-          <span>{results?.root?.children.length} results of {search}</span>
-          <div className="filter-tags">
-            <span>Filter Tags:</span>
-           
-            <button> <i class="fa fa-history fa-sm" aria-hidden="true"></i> Clear</button>
-          </div>
-          <div className="display-content">
-            <span>Displaying 20 of 1661 results on page</span>
-            <span>Prev</span>
-            <span>Next</span>
-          </div>
-          <br />
+        <span>
+          {results?.root?.children.length} results of {search}
+        </span>
+        <div className="filter-tags">
+          <span>Filter Tags:</span>
+
+          <button>
+            
+            <i class="fa fa-history fa-sm" aria-hidden="true"></i> Clear
+          </button>
+        </div>
+        <div className="display-content">
+          <span>Displaying 20 of 1661 results on page</span>
+          <span>Prev</span>
+          <span>Next</span>
+        </div>
+        <br />
         <div className="table-container">
-         
           <table>
             <colgroup>
               <col style={{ width: "65%" }} />
-              <col style={{ width: "7%" }} />
+              <col style={{ width: "10%" }} />
               <col style={{ width: "100%" }} />
-              <col style={{ width: "100%", }} />
+              <col style={{ width: "70%" }} />
             </colgroup>
             <thead className="firstHead">
               <tr>
-                <th onClick={() => handleSort("Company")}>
+                <th onClick={() => handleSort("Company")} >
                   <i
                     className="fa-solid fa-sort"
                     style={{ color: "#a3a3a3" }}
@@ -130,7 +165,7 @@ function TableContainer({ results, index, BQID, search }) {
                   ></i>
                   &nbsp; Revenue
                 </th>
-                <th onClick={() => handleSort("Headcount")}>
+                <th onClick={() => handleSort("Headcount")} style={{minWidth:"100px"}}>
                   <i
                     className="fa-solid fa-sort"
                     style={{ color: "#a3a3a3" }}
@@ -139,10 +174,9 @@ function TableContainer({ results, index, BQID, search }) {
                 </th>
               </tr>
             </thead>
-
+          
             <tbody>
-              {
-              currentItems.map((data, i) => {
+              {currentItems.map((data, i) => {
                 return (
                   <tr key={i} className="first-row">
                     <td className="firstData">
@@ -193,10 +227,7 @@ function TableContainer({ results, index, BQID, search }) {
               })}
             </tbody>
           </table>
-          <div
-           
-          className="pagination"
-          >
+          <div className="pagination">
             <Pagination
               currentPage={currentPage}
               totalSize={data.length}
@@ -207,11 +238,10 @@ function TableContainer({ results, index, BQID, search }) {
           </div>
         </div>
       </div>
-     
+
       {/* MAP DATA  */}
       {showMap ? (
         <>
-          
           <div className="map-wrapper" style={{ width: "50vw" }}>
             <RisizableDiv mapData={mapData} />
           </div>

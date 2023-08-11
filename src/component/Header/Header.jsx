@@ -31,18 +31,18 @@ function Header({ classNameName }) {
 
   return (
     <>
-      <header className="header">
-        <h1 className="logo">
-          <a href="/">
+      <header className="header container">
+            <div className="logo">
+
             <img
-              src="https://brightquery.com//wp-content/uploads/2020/07/BQ-Logo-1-1.svg"
+              src="https://search2.brightquery.com/assets/BQ-Logo-ccdbf4d6.svg"
               alt="BrightQuery"
               id="logo"
               width="200px"
               height="50px"
             />
-          </a>
-        </h1>
+            </div>
+      <div className="form-container">
         <ul className="main-nav">
           <form onSubmit={submitHandle}>
             <input
@@ -52,10 +52,12 @@ function Header({ classNameName }) {
               placeholder="Search Company By Name"
             />
             
-            <button type="submit">Search</button>
-            <button onClick={logoutHandler}>LOGOUT</button>
+            <button className="submit-btn" type="submit">Search</button>
+            <span className="logout" onClick={logoutHandler}>Logout</span>
           </form>
         </ul>
+
+      </div>
       </header>
     </>
   );
