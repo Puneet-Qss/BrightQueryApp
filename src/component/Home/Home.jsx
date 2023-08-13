@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import file from '../../assets/file.png';
-import folder from '../../assets/folder.png';
-import user from '../../assets/user.png';
+import file from '../../assets/images/file.png';
+import folder from '../../assets/images/folder.png';
+import user from '../../assets/images/user.png';
 import "../../assets/css/home.css";
 
 function Home() {

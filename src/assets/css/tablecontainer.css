@@ -27,11 +27,18 @@ td {
 th {
   position: sticky;
   top: 0;
-  background-color: whitesmoke;
+  background-color: white;
   z-index: 1;
   cursor: pointer;
-  font-size: 15px;
-  opacity: 0.7;
+  font-size: 16px;
+  font-weight: 500;
+  opacity: 1;
+  flex: 1; 
+}
+
+th span{
+  display: flex;
+  flex: row;
 }
 
 tbody {
@@ -62,7 +69,6 @@ tbody {
   flex-direction: column;
 }
 
-
 .mapicon {
   position: relative;
   top: 128px;
@@ -90,11 +96,14 @@ tbody {
   align-items: center;
 }
 
-.filter-tags button{
+.filter-tags button {
   display: flex;
   gap: 5px;
   align-items: center;
   background-color: none;
 }
 
-
+span{
+  display :flex;
+  align-items: center;
+}

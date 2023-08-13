@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import dropDown from "../../assets/drop-down-arrow.png";
-import menu from "../../assets/menu.png";
-import arrowLeft from "../../assets/arrow-left.png";
-import list from "../../assets/list.png";
-import saveSearch from "../../assets/save-search.png";
+import dropDown from "../../assets/images/drop-down-arrow.png";
+import menu from "../../assets/images/menu.png";
+import arrowLeft from "../../assets/images/arrow-left.png";
+import list from "../../assets/images/list.png";
+import saveSearch from "../../assets/images/save-search.png";
 import "../../assets/css/sidebar.css";
 
-import data from "../../Sidebar-Data/countryCodes";
+// import data from "../../Sidebar-Data/countryCodes";
 
 function Sidebar() {
   const [menuOpen, setMenuOpen] = useState(true);
@@ -53,12 +53,12 @@ function Sidebar() {
             <option value="">choose 1</option>
           </select>
 
-          {
+          {/* {
           data.stateList.map((val) => {
-            console.log("val", val);
+            // console.log("val", val);
             return null;
           })
-          }
+          } */}
           <select
             name="choose value"
             id="input"

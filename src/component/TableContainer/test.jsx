@@ -39,18 +39,14 @@ function TableContainer({ results, index, BQID, search }) {
         if (statusA) return order === "asc" ? -1 : 1;
         else return order === "asc" ? 1 : -1;
       }
-    }else if (column === "Revenue") {
+    } else if (column === "Revenue") {
       const revenueA = parseFloat(a.fields.bq_revenue_mr) || 0;
       const revenueB = parseFloat(b.fields.bq_revenue_mr) || 0;
       return order === "asc" ? revenueA - revenueB : revenueB - revenueA;
-    } else if (column === "Headcount") {
-      const headcountA = parseInt(a.fields.bq_current_employees_plan_mr) || 0;
-      const headcountB = parseInt(b.fields.bq_current_employees_plan_mr) || 0;
-      return order === "asc" ? headcountA - headcountB : headcountB - headcountA;
     } else {
       const fieldA = a.fields[column];
       const fieldB = b.fields[column];
-  
+
       if (fieldA !== fieldB) {
         if (typeof fieldA === "string" && typeof fieldB === "string") {
           return order === "asc"
@@ -81,6 +77,7 @@ function TableContainer({ results, index, BQID, search }) {
   };
 
   const sortedData = [...data].sort(customSort(sortColumn, sortOrder));
+
   const BQ_ID = (str) => {
     const delimiter = "::";
     const startIndex = str.indexOf(delimiter) + delimiter.length;
@@ -127,6 +124,7 @@ function TableContainer({ results, index, BQID, search }) {
           <span>Filter Tags:</span>
 
           <button>
+            
             <i class="fa fa-history fa-sm" aria-hidden="true"></i> Clear
           </button>
         </div>
@@ -142,55 +140,45 @@ function TableContainer({ results, index, BQID, search }) {
               <col style={{ width: "65%" }} />
               <col style={{ width: "10%" }} />
               <col style={{ width: "100%" }} />
-              <col style={{ width: "100%" }} />
+              <col style={{ width: "70%" }} />
             </colgroup>
             <thead className="firstHead">
               <tr>
-                <th onClick={() => handleSort("Company")}>
-                  <span>
-                    <i
-                      className="fa-solid fa-sort"
-                      style={{ color: "#a3a3a3" }}
-                    ></i>
-                    &nbsp; Company
-                  </span>
+                <th onClick={() => handleSort("Company")} >
+                  <i
+                    className="fa-solid fa-sort"
+                    style={{ color: "#a3a3a3" }}
+                  ></i>
+                  &nbsp; Company
                 </th>
                 <th onClick={() => handleSort("Status")}>
-                  <span>
-                    <i
-                      className="fa-solid fa-sort"
-                      style={{ color: "#a3a3a3" }}
-                    ></i>
-                    &nbsp; Status
-                  </span>
+                  <i
+                    className="fa-solid fa-sort"
+                    style={{ color: "#a3a3a3" }}
+                  ></i>
+                  &nbsp; Status
                 </th>
                 <th onClick={() => handleSort("Revenue")}>
-                  <span>
-                    <i
-                      className="fa-solid fa-sort"
-                      style={{ color: "#a3a3a3" }}
-                    ></i>
-                    &nbsp; Revenue
-                  </span>
+                  <i
+                    className="fa-solid fa-sort"
+                    style={{ color: "#a3a3a3" }}
+                  ></i>
+                  &nbsp; Revenue
                 </th>
-                <th onClick={() => handleSort("Headcount")}>
-                  <span>
-                    <i
-                      className="fa-solid fa-sort"
-                      style={{ color: "#a3a3a3" }}
-                    >
-                      {" "}
-                    </i>{" "}
-                    &nbsp;HeadCount
-                  </span>
+                <th onClick={() => handleSort("Headcount")} style={{minWidth:"100px"}}>
+                  <i
+                    className="fa-solid fa-sort"
+                    style={{ color: "#a3a3a3" }}
+                  ></i>
+                  &nbsp; Headcount
                 </th>
               </tr>
             </thead>
-
+          
             <tbody>
-              {currentItems.map((data, index) => {
+              {currentItems.map((data, i) => {
                 return (
-                  <tr key={index} className="first-row">
+                  <tr key={i} className="first-row">
                     <td className="firstData">
                       <div className="row-details">
                         <div className="icon">
@@ -239,13 +227,7 @@ function TableContainer({ results, index, BQID, search }) {
               })}
             </tbody>
           </table>
-          <div
-            style={{
-              minWidth: "350px",
-              marginTop: "10px",
-              marginLeft: "450px",
-            }}
-          >
+          <div className="pagination">
             <Pagination
               currentPage={currentPage}
               totalSize={data.length}

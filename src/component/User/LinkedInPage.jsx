@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "../../assets/css/LinkedInPage.css";
 import axios from "axios";
 import Swal from "sweetalert2";
-import logo from "../../assets/user-logo.svg";
+import logo from "../../assets/images/user-logo.svg";
 import swal from "sweetalert";
 
 function LinkedInPage({ onSignInStatusChange }) {

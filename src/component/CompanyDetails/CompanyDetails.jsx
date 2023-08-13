@@ -1,5 +1,5 @@
 import React from "react";
-import "./companydetails.css";
+import "../../assets/css/companydetails.css";
 import TestContainer from "./MapContainer";
 
 function CompanyDetails({ props, index, BQID }) {
@@ -39,7 +39,7 @@ function CompanyDetails({ props, index, BQID }) {
               </div>
               {/* BODY  */}
 
-              <div className="modal-body modal-xl">
+              <div className="modal-body modal-md">
                 <div className="left-content">
                   {/* ORGANIZATION  */}
                   <div className="organization">
