@@ -4,8 +4,8 @@
   display: flex;
   flex-direction: column;
   height: 70vh;
-  overflow-y: scroll;
-  margin: 2%;
+   margin: 5px;
+   overflow-y: scroll;
   width: 100%;
 }
 
@@ -16,7 +16,7 @@
 table {
   width: auto;
   border-collapse: collapse;
-  table-layout: fixed;
+  table-layout: auto;
 }
 
 th,
@@ -107,3 +107,4 @@ span{
   display :flex;
   align-items: center;
 }
+

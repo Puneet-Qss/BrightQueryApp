@@ -1,17 +1,17 @@
 import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
-const TestContainer = ({ latitude, longitude }) => {
-  // Check if latitude and longitude are valid numbers
+const CompanyMap = ({ latitude, longitude }) => {
+
+
   if (isNaN(latitude) || isNaN(longitude)) {
     return <div>Invalid latitude or longitude values</div>;
   }
-
   const position = [latitude, longitude];
 
   const mapStyle = {
     width: "100%",
-    height: "400px",
+    height: "450px",
     maxWidth: "100%",
   };
 
@@ -37,4 +37,4 @@ const TestContainer = ({ latitude, longitude }) => {
   );
 };
 
-export default TestContainer;
+export default CompanyMap;

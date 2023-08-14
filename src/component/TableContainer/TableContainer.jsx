@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "../../assets/css/tablecontainer.css";
 import CompanyDetails from "../CompanyDetails/CompanyDetails";
-import RisizableDiv from "../ShowMapContainer/RisizableDiv";
 import Pagination from "react-pagination-js";
 import "react-pagination-js/dist/styles.css";
-import ReactPaginate from "react-paginate";
-import {
-  ResizeContent,
-  ResizeHandleRight,
-  ResizePanel,
-  ResizeHandleLeft,
-} from "react-hook-resize-panel";
+
+import CompanyMap from "../CompanyDetails/CompanyMap";
 
 function TableContainer({ results, index, BQID, search }) {
   const [sortOrder, setSortOrder] = useState("asc");
@@ -21,9 +15,7 @@ function TableContainer({ results, index, BQID, search }) {
   const [showMap, setShowMap] = useState(false);
 
   const data = results?.root?.children;
-  console.log("data count", results?.root?.children.length);
-  console.log("earch Content", search);
-
+ 
   const customSort = (column, order) => (a, b) => {
     if (column === "Company") {
       const fieldA = a.fields.bq_organization_name.toLowerCase();
@@ -261,7 +253,7 @@ function TableContainer({ results, index, BQID, search }) {
       {showMap ? (
         <>
           <div className="map-wrapper" style={{ width: "50vw" }}>
-            <RisizableDiv mapData={mapData} />
+            <CompanyMap latitude = {mapData.latitude} longitude={mapData.longitude}/>
           </div>
         </>
       ) : (

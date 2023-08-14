@@ -1,3 +1,5 @@
+/* Your existing styles */
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -92,12 +94,35 @@ form input {
 input::placeholder {
   opacity: 0.8;
 }
-/* 
-@media (min-width: 769px) {
-  .header {
-    width: 100%;
-    margin: 0 auto;
-    max-width: 1150px;
-  }
+
+/* New styles for the clear button */
+
+.clear-btn {
+  background-color: white;
+  font-style: normal;
+  font-size: 12px;
+  cursor: pointer;
+  color: #ccc;
+  border: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
 }
- */
+
+.search-input {
+  position: relative;
+  display: inline-block;
+}
+
+.search-input input {
+  padding-right: 30px; /* Space for the clear icon */
+}
+
+.search-input i {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #ccc;
+}
