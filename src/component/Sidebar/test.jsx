@@ -1,9 +1,8 @@
 import React, { useState } from "react";
+import dropDown from "../../assets/images/drop-down-arrow.png";
 import "../../assets/css/sidebar.css";
-import IRS_SECTOR from '../../constants/irsSector'
+
 import data from "../../constants/countryCodes";
-
-
 
 function Sidebar() {
   const [menuOpen, setMenuOpen] = useState(true);
@@ -39,20 +38,9 @@ function Sidebar() {
 
         <div className="dropdown">
           {[
+            // ... other options ...
             "Location State",
-            "Company Type",
-            "IRS Sector",
-            "IRS Industry Sector",
-            "Year Founded",
-            "Revenue",
-            "Headcourt",
-            "Entity Status",
-            "Public or Private",
-            "For Profit or Nonprofit",
-            "Time Series",
-            "Parent Child Family Tree",
-            "Jurisdiction State",
-            "Growth Rate",
+            // ... other options ...
           ].map((option, index) => (
             <div key={index} className="select-container">
               <select
@@ -62,36 +50,14 @@ function Sidebar() {
                 required="required"
               >
                 <option value="">{option}</option>
-                {option === "Company Type" && (
-                  <>
-                    <option value="Employer">Employer</option>
-                    <option value="Sole Proprietor">Sole Proprietor</option>
-                  </>
-                )}
-                {option === "IRS Sector" && (
-                  <>
-                    {IRS_SECTOR.map((sector, sectorIndex) => (
-                      <option key={sectorIndex} value={sector.value}>
-                        <label>
-                          <input type="checkbox" />
-                          {sector.title}
-                        </label>
-                      </option>
-                    ))}
-                  </>
-                )}
-                {option === "Location State" && (
-                  <>
-                    {data.stateList.map((state, stateIndex) => (
-                      <option key={stateIndex} value={state.value}>
-                        <label>
-                          <input type="checkbox" />
-                          {state.title}
-                        </label>
-                      </option>
-                    ))}
-                  </>
-                )}
+                {data.stateList.map((state, stateIndex) => (
+                  <option key={stateIndex} value={state.value}>
+                    <label>
+                      <input type="checkbox" />
+                      {state.title}
+                    </label>
+                  </option>
+                ))}
               </select>
               <div className="dropdown-icon">
                 <svg

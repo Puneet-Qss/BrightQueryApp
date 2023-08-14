@@ -15,7 +15,7 @@ function TableContainer({ results, index, BQID, search }) {
   const [showMap, setShowMap] = useState(false);
 
   const data = results?.root?.children;
- 
+
   const customSort = (column, order) => (a, b) => {
     if (column === "Company") {
       const fieldA = a.fields.bq_organization_name.toLowerCase();
@@ -31,18 +31,20 @@ function TableContainer({ results, index, BQID, search }) {
         if (statusA) return order === "asc" ? -1 : 1;
         else return order === "asc" ? 1 : -1;
       }
-    }else if (column === "Revenue") {
+    } else if (column === "Revenue") {
       const revenueA = parseFloat(a.fields.bq_revenue_mr) || 0;
       const revenueB = parseFloat(b.fields.bq_revenue_mr) || 0;
       return order === "asc" ? revenueA - revenueB : revenueB - revenueA;
     } else if (column === "Headcount") {
       const headcountA = parseInt(a.fields.bq_current_employees_plan_mr) || 0;
       const headcountB = parseInt(b.fields.bq_current_employees_plan_mr) || 0;
-      return order === "asc" ? headcountA - headcountB : headcountB - headcountA;
+      return order === "asc"
+        ? headcountA - headcountB
+        : headcountB - headcountA;
     } else {
       const fieldA = a.fields[column];
       const fieldB = b.fields[column];
-  
+
       if (fieldA !== fieldB) {
         if (typeof fieldA === "string" && typeof fieldB === "string") {
           return order === "asc"
@@ -104,7 +106,6 @@ function TableContainer({ results, index, BQID, search }) {
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
   const currentItems = sortedData.slice(firstIndex, lastIndex);
-
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -231,19 +232,12 @@ function TableContainer({ results, index, BQID, search }) {
               })}
             </tbody>
           </table>
-          <div
-            style={{
-              minWidth: "350px",
-              marginTop: "10px",
-              marginLeft: "450px",
-            }}
-          >
+          <div className="center-pagination">
             <Pagination
               currentPage={currentPage}
-              totalSize={data.length}
-              sizePerPage={itemsPerPage}
-              changeCurrentPage={handlePageChange}
-              numberOfPagesNextToActivePage={2}
+              totalSize={data.length} 
+              sizePerPage={itemsPerPage} // Number of items per page
+              changeCurrentPage={handlePageChange} 
             />
           </div>
         </div>
@@ -253,7 +247,10 @@ function TableContainer({ results, index, BQID, search }) {
       {showMap ? (
         <>
           <div className="map-wrapper" style={{ width: "50vw" }}>
-            <CompanyMap latitude = {mapData.latitude} longitude={mapData.longitude}/>
+            <CompanyMap
+              latitude={mapData.latitude}
+              longitude={mapData.longitude}
+            />
           </div>
         </>
       ) : (

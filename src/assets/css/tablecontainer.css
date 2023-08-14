@@ -108,3 +108,17 @@ span{
   align-items: center;
 }
 
+.center-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.react-pagination-js-default .pageElli {
+  display: flex !important;
+  text-align: center !important;
+}
+.react-pagination-js-default .pageElli a {
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  width: 26px !important;
+}
