@@ -42,7 +42,6 @@ function App() {
 
   return (
     <Routes>
-      {/* If signed in, show Home page. If not, redirect to login */}
       <Route
         path="/"
         element={isSignedIn ? <Home /> : <Navigate to="/login" />}

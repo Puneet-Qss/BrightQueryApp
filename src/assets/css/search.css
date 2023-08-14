@@ -1,7 +1,35 @@
-
+/* Default styles for the main container */
 .main-container {
   display: flex;
   margin-left: 3%;
-} 
+}
 
+/* Responsive adjustments for screens below 768px */
+@media (max-width: 768px) {
+  .header {
+    padding: 10px;
+  }
 
+  .footer {
+    padding: 10px;
+  }
+
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+    width: 90%;
+
+    /* Calculate the height based on available viewport height */
+    height: calc(100vh - (headerHeight + footerHeight + otherMargins));
+  }
+
+  .sidebar {
+    /* Adjust styles for the sidebar */
+  }
+
+  .table-container {
+    overflow-x: auto;
+    width: 100%; /* Make the table container take full width */
+  }
+}
