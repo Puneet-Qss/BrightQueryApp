@@ -23,6 +23,7 @@
     "react-leaflet-cluster": "^2.1.0",
     "react-linkedin-login-oauth2": "^2.0.1",
     "react-loader-spinner": "^5.3.4",
+    "react-multi-select-component": "^4.3.4",
     "react-paginate": "^8.2.0",
     "react-pagination-js": "^2.0.0",
     "react-router-dom": "^6.14.1",

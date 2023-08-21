@@ -51,7 +51,7 @@
 }
 
 .sidebar.collapsed .menu-item {
-  padding: 10px; /* Adjust padding for collapsed items */
+  padding: 10px; 
 }
 
 .menu-item img {
@@ -81,7 +81,7 @@
 /* Responsive styles */
 @media screen and (max-width: 768px) {
   .sidebar {
-    width: 100%;
+    width:26%;
     height: auto;
   }
 
