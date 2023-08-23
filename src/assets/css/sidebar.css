@@ -1,23 +1,16 @@
-
 .sidebar {
-  width: 26%;
-  height: 75vh;
+  width: 30%;
+  height: 80vh;
   transition: width 0.3s ease, height 0.3s ease; /* Add height transition */
   overflow: hidden;
   box-sizing: border-box;
   border: 1px solid #ccc;
 }
 
-.select-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
 .dropdown-icon {
   position: absolute;
   top: 50%;
-  right: 10px; 
+  right: 10px;
   transform: translateY(-50%);
 }
 
@@ -41,17 +34,17 @@
   align-items: center;
   margin-top: 20px;
   margin-left: auto;
-  transition: all 0.3s ease; 
+  transition: all 0.3s ease;
 }
 
-.menu-item1{
+.menu-item1 {
   display: flex;
- align-content: center;
- text-align: center;
+  align-content: center;
+  text-align: center;
 }
 
 .sidebar.collapsed .menu-item {
-  padding: 10px; 
+  padding: 10px;
 }
 
 .menu-item img {
@@ -78,10 +71,13 @@
   opacity: 1;
 }
 
+.select-container {
+  margin: 1% 3%;
+}
 /* Responsive styles */
 @media screen and (max-width: 768px) {
   .sidebar {
-    width:26%;
+    width: 100%;
     height: auto;
   }
 
@@ -104,92 +100,83 @@
   }
 }
 
-
-
-
-
 /* ... your other CSS styles ... */
-  
 
-  
-  .dropdown {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    overflow-y: scroll;
-  }
-  
-  .menu-item {
-   display: flex;
-   justify-content: left;
-   align-items: center;
-   background-color: #F8F8F8;
-  }
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: scroll;
+}
 
+.menu-item {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background-color: #f8f8f8;
+}
 
+span {
+  margin-left: 10px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
 
+.menu {
+  background-color: white;
+  height: 70vh;
+}
 
+.dropdown {
+  margin-top: 10%;
+  height: 55vh;
+}
 
-  span {
-    margin-left: 10px;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  }
-  
-  .menu {
-    background-color: white;
-    height: 70vh;
-  }
+.dropdown select {
+  width: 95%;
+  margin: 0% 5px;
+}
 
-  .dropdown {
-    margin-top: 10%;
-    height: 55vh;
-  }
+/* Scrollbar styling */
 
+::-webkit-scrollbar {
+  width: 6px;
+}
 
-  .dropdown select {
-    width: 95%;
-    margin: 0% 5px;
-  }
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
 
-  
-  /* Scrollbar styling */
- 
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-  
-  .sidebar-footer{
-    width: 75%;
-    margin: 0% 10%;
-  }
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
 
-  .sidebar-footer button {
-    background-color: #CCCCCC;
-    padding: 10px;
-    text-align: center;
-    font-size: 14px;
-    display: flex;
-    border-radius: 10px;
-    width: 100%;
-    margin-bottom: 20px;
-    border: 1px solid;
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 
+.sidebar-footer {
+  width: 75%;
+  margin: 0% 10%;
+}
+
+.sidebar-footer button {
+  background-color: #cccccc;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  display: flex;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid;
+}
 
 .top {
-  background-color: #F8F8F8 !important;
-  margin: 0; /* Remove all margins */
-  padding:5%; /* Remove padding as well if needed */
+  background-color: #f8f8f8;
+  margin: 0;
+  padding: 5%;
+}
+
+.multiselect-container {
+  display: block;
 }

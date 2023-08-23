@@ -74,6 +74,11 @@ const stateList = [
   { value: "Wyoming", title: "Wyoming" },
 ];
 
+const companyType= [
+  {value:  "Employer" , title : "Employer"},
+  {value:  "Sole proprieter" , title : "Sole Proprietor"},
+]
+
 //  [
 
 //     { value: "", title: "Jurisdiction State" },
@@ -186,6 +191,20 @@ const JstateList = [
   { value: "US_WY", title: "US_WY" },
 ];
 
+const companyLegalStructure  = [
+  {value : "Multi-entity, U.S. organization" , title : "Multi-entity, U.S. organization"},
+  {value : "Single-entity, U.S. organization" , title:  "Single-entity, U.S. organization"},
+]
 
-export default { stateList, JstateList };
+const  companyStatus = [
+  {value : "Active" , title:  "Active"},
+  {value : "Inactive" , title:  "Active"},
+]
+
+const PublicOrPrivate  = [
+  {value: "Public" , title : "Public"},
+  {value: "Private" , title : "Private"},
+]
+
+export default { stateList, JstateList , companyLegalStructure , companyType ,companyStatus, PublicOrPrivate};
 

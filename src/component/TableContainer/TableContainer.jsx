@@ -5,14 +5,17 @@ import Pagination from "react-pagination-js";
 import "react-pagination-js/dist/styles.css";
 
 import CompanyMap from "../CompanyDetails/CompanyMap";
+import { RotatingLines } from "react-loader-spinner";
 
-function TableContainer({ results, index, BQID, search }) {
+function TableContainer({ results, index, BQID, search , selectedDropdownValues }) {
   const [sortOrder, setSortOrder] = useState("asc");
   const [sortColumn, setSortColumn] = useState("Company");
+  const [sortColumns, setSortColumns] = useState({});
   const [selectedRowIndex, setSelectedRowIndex] = useState(true);
   const [mapData, setMapData] = useState({});
   const [showMe, setShowMe] = useState(false);
   const [showMap, setShowMap] = useState(false);
+  const [isSorting, setIsSorting] = useState(false);
 
   const data = results?.root?.children;
 
@@ -74,6 +77,44 @@ function TableContainer({ results, index, BQID, search }) {
     }
   };
 
+  const multiSort = (a, b) => {
+    for (const columnName in sortColumns) {
+      const order = sortColumns[columnName];
+      if (columnName === "Company") {
+        const fieldA = a.fields.bq_organization_name.toLowerCase();
+        const fieldB = b.fields.bq_organization_name.toLowerCase();
+        return order === "asc" ? fieldA.localeCompare(fieldB) : fieldB.localeCompare(fieldA);
+      } else if (columnName === "Status") {
+        const statusA = a.fields.bq_organization_isactive;
+        const statusB = b.fields.bq_organization_isactive;
+        if (statusA !== statusB) {
+          if (statusA) return order === "asc" ? -1 : 1;
+          else return order === "asc" ? 1 : -1;
+        }
+      } else if (columnName === "Revenue") {
+        const revenueA = parseFloat(a.fields.bq_revenue_mr) || 0;
+        const revenueB = parseFloat(b.fields.bq_revenue_mr) || 0;
+        return order === "asc" ? revenueA - revenueB : revenueB - revenueA;
+      } else if (columnName === "Headcount") {
+        const headcountA = parseInt(a.fields.bq_current_employees_plan_mr) || 0;
+        const headcountB = parseInt(b.fields.bq_current_employees_plan_mr) || 0;
+        return order === "asc" ? headcountA - headcountB : headcountB - headcountA;
+      } else {
+        const fieldA = a.fields[columnName];
+        const fieldB = b.fields[columnName];
+        if (fieldA !== fieldB) {
+          if (typeof fieldA === "string" && typeof fieldB === "string") {
+            return order === "asc" ? fieldA.localeCompare(fieldB) : fieldB.localeCompare(fieldA);
+          } else {
+            return order === "asc" ? (fieldA < fieldB ? -1 : 1) : fieldB < fieldA ? -1 : 1;
+          }
+        }
+      }
+    }
+    return 0;
+  };
+  
+  
   const sortedData = [...data].sort(customSort(sortColumn, sortOrder));
   const BQ_ID = (str) => {
     const delimiter = "::";
@@ -97,6 +138,16 @@ function TableContainer({ results, index, BQID, search }) {
   };
 
   useEffect(() => {
+    if (isSorting) {
+      // Simulate sorting delay
+      const sortingTimeout = setTimeout(() => {
+        setIsSorting(false);
+      }, 1000);
+
+      return () => clearTimeout(sortingTimeout); // Clean up the timeout
+    }
+  }, [isSorting]);
+  useEffect(() => {
     console.log("Map Data ", mapData);
   }, [showMap, mapData]);
 
@@ -112,6 +163,7 @@ function TableContainer({ results, index, BQID, search }) {
 
   return (
     <>
+   
       <div className="side-content">
         <span>
           {results?.root?.children.length} results of {search}
@@ -137,7 +189,7 @@ function TableContainer({ results, index, BQID, search }) {
               <col style={{ width: "100%" }} />
               <col style={{ width: "100%" }} />
             </colgroup>
-            <thead className="firstHead">
+            <thead>
               <tr>
                 <th onClick={() => handleSort("Company")}>
                   <span>
@@ -172,14 +224,12 @@ function TableContainer({ results, index, BQID, search }) {
                       className="fa-solid fa-sort"
                       style={{ color: "#a3a3a3" }}
                     >
-                      {" "}
-                    </i>{" "}
+                    </i>
                     &nbsp;HeadCount
                   </span>
                 </th>
               </tr>
             </thead>
-
             <tbody>
               {currentItems.map((data, index) => {
                 return (

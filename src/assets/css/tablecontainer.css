@@ -22,6 +22,7 @@ table {
 th,
 td {
   text-align: left;
+  
 }
 
 th {
@@ -73,6 +74,8 @@ tbody {
   position: relative;
   top: 128px;
 }
+
+
 
 .companyIcon {
   position: relative;

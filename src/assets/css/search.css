@@ -24,9 +24,7 @@
     height: calc(100vh - (headerHeight + footerHeight + otherMargins));
   }
 
-  .sidebar {
-    /* Adjust styles for the sidebar */
-  }
+ 
 
   .table-container {
     overflow-x: auto;

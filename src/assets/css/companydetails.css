@@ -31,10 +31,13 @@ button {
 }
 
 .company-name {
-  opacity: 0.7;
   height: fit-content;
   display: inline;
-  /* margin: 10px; */
+  font-weight:500;
+    color: #00bef3;
+    font-style: normal;
+    margin-bottom: 10px;
+    cursor: pointer
 }
 
 .legal {

@@ -7,6 +7,7 @@ import { RotatingLines } from "react-loader-spinner";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Footer from '../Footer/Footer';
+import {stateList} from '../../constants/countryCodes';
 
 function Search() {
   const { query } = useParams();
@@ -15,6 +16,17 @@ function Search() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [searchResults, setSearchResults] = useState([]);
+  const [selectedDropdownValues, setSelectedDropdownValues] = useState({});
+  const handleDropdownChange = (column, value) => {
+    setSelectedDropdownValues({
+      ...selectedDropdownValues,
+      [column]: value,
+    });
+  };
+
+  const handleSelectedOptions = (options) => {
+    setSelectedDropdownValues(options);
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -23,7 +35,7 @@ function Search() {
           "https://searchapi.brightquery.com/search",
           {
             params: {
-              hits:300,
+              hits: 300,
               query: query,
             },
           }
@@ -63,8 +75,15 @@ function Search() {
           <Header />
           <hr />
           <div className="main-container">
-            <Sidebar />
-            <TableContainer results={searchResults} search= {query}/>
+            <Sidebar
+              handleDropdownChange={handleDropdownChange}
+              handleSelectedOptions={handleSelectedOptions}
+            />
+            <TableContainer
+              selectedDropdownValues={selectedDropdownValues}
+              results={searchResults}
+              search={query}
+            />
             <Footer />
           </div>
         </>
